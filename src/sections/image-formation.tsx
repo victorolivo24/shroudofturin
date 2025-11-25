@@ -1,0 +1,133 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { SectionShell } from "@/components/layout/header";
+import { SectionHeader } from "@/components/shared/section-header";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { imageFormationHypotheses } from "@/data/labs";
+import {
+  PLACEHOLDER_SHROUD,
+  PLACEHOLDER_SUDARIUM,
+  PLACEHOLDER_UV,
+} from "@/data/placeholders";
+
+const comparisonModes = [
+  { id: "negative", label: "Normal vs Negative" },
+  { id: "relief", label: "Normal vs 3D Depth Map" },
+];
+
+export function ImageFormationSection() {
+  const [comparison, setComparison] = useState(comparisonModes[0].id);
+
+  return (
+    <SectionShell id="image-formation">
+      <SectionHeader
+        eyebrow="Image Formation"
+        title="Explore surface depth, negatives, and competing hypotheses."
+        description="Toggle between image states, scan the superficiality, and compare explanations from both advocates and skeptics."
+      />
+      <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
+        <Card className="bg-black/40">
+          <CardHeader>
+            <Badge variant="amber">Comparison Viewer</Badge>
+            <CardDescription>Switch between imaging modes.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-wrap gap-3">
+              {comparisonModes.map((mode) => (
+                <Button
+                  key={mode.id}
+                  variant={comparison === mode.id ? "default" : "outline"}
+                  onClick={() => setComparison(mode.id)}
+                >
+                  {mode.label}
+                </Button>
+              ))}
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="relative h-64 overflow-hidden rounded-3xl border border-sand-200/15">
+                <Image
+                  src={PLACEHOLDER_SHROUD}
+                  alt="Normal placeholder"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative h-64 overflow-hidden rounded-3xl border border-sand-200/15">
+                <Image
+                  src={
+                    comparison === "negative"
+                      ? PLACEHOLDER_SUDARIUM
+                      : PLACEHOLDER_UV
+                  }
+                  alt="Comparison placeholder"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <div className="rounded-3xl border border-sand-200/10 bg-sand-900/40 p-4 text-sm text-sand-50">
+              <p>
+                Explain superficiality (outer 0.2 microns) and cite both STURP
+                findings and skeptical responses here. {"<TODO: copy>"}
+              </p>
+            </div>
+            <p className="text-xs text-sand-200/70">
+              {/* TODO: embed relief-map video */}
+              Video Placeholder: Add 3D relief map animation or scientist interview.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-black/50">
+          <CardHeader>
+            <Badge variant="emerald">Hypothesis Matrix</Badge>
+            <CardTitle>Compare the key proposals</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {imageFormationHypotheses.map((hypothesis) => (
+              <div
+                key={hypothesis.id}
+                className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4"
+              >
+                <p className="text-lg font-semibold text-sand-50">
+                  {hypothesis.title}
+                </p>
+                <div className="mt-3 grid gap-3 text-sm text-sand-200/80 md:grid-cols-2">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+                      Scientific Explanation
+                    </p>
+                    <p>{hypothesis.science}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+                      Skeptical Notes
+                    </p>
+                    <p>{hypothesis.skeptical}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+              <p className="text-sm text-sand-200/80">
+                Placeholder for high-res face section. Insert interactive zoom,
+                depth slices, or segmentation overlays here. {"<TODO: copy>"}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </SectionShell>
+  );
+}

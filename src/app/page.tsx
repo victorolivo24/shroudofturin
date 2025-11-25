@@ -1,0 +1,27 @@
+import { LandingHero } from "@/sections/landing-hero";
+import { ShroudExplorerSection } from "@/sections/shroud-explorer";
+import { CrucifixionForensics } from "@/sections/crucifixion-forensics";
+import { BloodSerumLab } from "@/sections/blood-serum-lab";
+import { ImageFormationSection } from "@/sections/image-formation";
+import { DatingLab } from "@/sections/dating-lab";
+import { SudariumComparison } from "@/sections/sudarium-comparison";
+import { DebateRoom } from "@/sections/debate-room";
+import { FaithLens } from "@/sections/faith-lens";
+import { SourcesLibrary } from "@/sections/sources-library";
+
+export default function Home() {
+  return (
+    <div className="space-y-20 pb-20">
+      <LandingHero />
+      <ShroudExplorerSection />
+      <CrucifixionForensics />
+      <BloodSerumLab />
+      <ImageFormationSection />
+      <DatingLab />
+      <SudariumComparison />
+      <DebateRoom />
+      <FaithLens />
+      <SourcesLibrary />
+    </div>
+  );
+}

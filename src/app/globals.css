@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070909;
+  --foreground: #f8f6ef;
+  --sand-50: #f8f4eb;
+  --sand-100: #f1e7d4;
+  --sand-200: #d5c6a6;
+  --sand-400: #b79d6a;
+  --sand-500: #987f45;
+  --sand-700: #5a4727;
+  --sand-900: #1d140a;
+  --accent-emerald: #57c4b1;
+  --accent-amber: #f7b046;
+  --accent-rose: #e26666;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sand-50: var(--sand-50);
+  --color-sand-100: var(--sand-100);
+  --color-sand-200: var(--sand-200);
+  --color-sand-400: var(--sand-400);
+  --color-sand-500: var(--sand-500);
+  --color-sand-700: var(--sand-700);
+  --color-sand-900: var(--sand-900);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(87, 196, 177, 0.08), #020303),
+    radial-gradient(circle at 20% 20%, rgba(247, 176, 70, 0.08), transparent 40%),
+    #030405;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui;
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: rgba(247, 176, 70, 0.4);
+  color: #050201;
+}
