@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
 import Image from "next/image";
@@ -79,14 +80,28 @@ export function ImageFormationSection() {
             </div>
             <div className="rounded-3xl border border-sand-200/10 bg-sand-900/40 p-4 text-sm text-sand-50">
               <p>
-                Explain superficiality (outer 0.2 microns) and cite both STURP
-                findings and skeptical responses here. {"<TODO: copy>"}
+                The body image affects only the top 0.2 microns of each linen
+                fibril, with no penetration into the fibers—unlike paint or dye.
+                STURP analyses concluded no pigments or binders account for the
+                image [2][17].
               </p>
+              <img
+                src="/images/shroud-linen-fibers.jpg"
+                alt="STURP microscopy of linen fibers"
+                loading="lazy"
+                className="mt-3 w-full rounded-2xl border border-sand-200/20 object-cover"
+              />
             </div>
             <p className="text-xs text-sand-200/70">
               {/* TODO: embed relief-map video */}
               Video Placeholder: Add 3D relief map animation or scientist interview.
             </p>
+            <img
+              src="/images/shroud-vp8-3d-render.jpg"
+              alt="VP-8 3D rendering reference"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/20 object-cover"
+            />
           </CardContent>
         </Card>
         <Card className="bg-black/50">
@@ -115,15 +130,30 @@ export function ImageFormationSection() {
                       Skeptical Notes
                     </p>
                     <p>{hypothesis.skeptical}</p>
+                    {hypothesis.id === "bas-relief" && (
+                      <img
+                        src="/images/shroud-bas-relief-model.jpg"
+                        alt="Bas-relief hypothesis model"
+                        loading="lazy"
+                        className="mt-3 w-full rounded-2xl border border-sand-200/20 object-cover"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
             ))}
             <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
               <p className="text-sm text-sand-200/80">
-                Placeholder for high-res face section. Insert interactive zoom,
-                depth slices, or segmentation overlays here. {"<TODO: copy>"}
+                When backing cloths were removed in 2002, researchers reported
+                an extremely faint image of the face on the reverse side of the
+                linen, a phenomenon called &quot;double superficiality&quot; [20].
               </p>
+              <img
+                src="/images/shroud-reverse-side-face.jpg"
+                alt="Reverse-side facial image reference"
+                loading="lazy"
+                className="mt-3 w-full rounded-2xl border border-sand-200/20 object-cover"
+              />
             </div>
           </CardContent>
         </Card>

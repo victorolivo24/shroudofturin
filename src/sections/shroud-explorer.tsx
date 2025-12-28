@@ -1,5 +1,7 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
+import type { JSX } from "react";
 import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
@@ -45,6 +47,107 @@ export function ShroudExplorerSection() {
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
 
+  const renderModeImages = (content: string) => {
+    const normalized = content.toLowerCase();
+    const nodes: JSX.Element[] = [];
+    if (
+      normalized.includes("photographic negative") ||
+      normalized.includes("negative image")
+    ) {
+      nodes.push(
+        <img
+          key="negative"
+          src="/images/shroud-negative.jpg"
+          alt="Photographic negative reference"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (
+      normalized.includes("ultraviolet") ||
+      normalized.includes("uv fluorescence") ||
+      normalized.includes("serum halo")
+    ) {
+      nodes.push(
+        <img
+          key="uv"
+          src="/images/shroud-uv-fluorescence.jpg"
+          alt="UV fluorescence view"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (
+      normalized.includes("linen fibers") ||
+      normalized.includes("microscopy") ||
+      normalized.includes("superficial") ||
+      normalized.includes("linen fibril")
+    ) {
+      nodes.push(
+        <img
+          key="linen"
+          src="/images/shroud-linen-fibers.jpg"
+          alt="Linen fibers micrograph"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    return nodes;
+  };
+
+  const renderHotspotImages = (content: string) => {
+    const normalized = content.toLowerCase();
+    const nodes: JSX.Element[] = [];
+    if (
+      normalized.includes("1532") ||
+      normalized.includes("chambéry") ||
+      normalized.includes("fire damage")
+    ) {
+      nodes.push(
+        <img
+          key="fire"
+          src="/images/shroud-fire-damage.jpg"
+          alt="Shroud fire damage reference"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (
+      (normalized.includes("water") && normalized.includes("stain")) ||
+      normalized.includes("water stains")
+    ) {
+      nodes.push(
+        <img
+          key="water"
+          src="/images/shroud-water-stains.jpg"
+          alt="Water stains reference"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (
+      normalized.includes("ultraviolet") ||
+      normalized.includes("uv fluorescence") ||
+      normalized.includes("serum halo")
+    ) {
+      nodes.push(
+        <img
+          key="hotspot-uv"
+          src="/images/shroud-uv-fluorescence.jpg"
+          alt="UV fluorescence hotspot reference"
+          loading="lazy"
+          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    return nodes;
+  };
+
   return (
     <SectionShell id="shroud-explorer">
       <SectionHeader
@@ -52,6 +155,12 @@ export function ShroudExplorerSection() {
         title="Shroud Explorer"
         description="Step into an impartial, interactive gallery that surfaces the major evidence sets, counterpoints, and open questions."
         badgeVariant="amber"
+      />
+      <img
+        src="/images/shroud_full_body.jpg"
+        alt="Full body view of the Shroud of Turin"
+        loading="lazy"
+        className="mb-10 w-full rounded-[40px] border border-sand-200/15 object-cover"
       />
 
       <div className="grid gap-10 lg:grid-cols-[1.1fr,0.9fr]">
@@ -69,6 +178,22 @@ export function ShroudExplorerSection() {
               {explorerModes.map((item) => (
                 <ToggleGroupItem key={item.id} value={item.id}>
                   {item.label}
+                  {item.label.includes("Photographic Negative") && (
+                    <img
+                      src="/images/shroud-negative.jpg"
+                      alt="Photographic negative quick reference"
+                      loading="lazy"
+                      className="mt-2 w-full rounded-2xl border border-sand-200/20 object-cover"
+                    />
+                  )}
+                  {item.label.includes("UV Fluorescence") && (
+                    <img
+                      src="/images/shroud-uv-fluorescence.jpg"
+                      alt="UV fluorescence preview"
+                      loading="lazy"
+                      className="mt-2 w-full rounded-2xl border border-sand-200/20 object-cover"
+                    />
+                  )}
                 </ToggleGroupItem>
               ))}
             </ToggleGroup>
@@ -81,6 +206,10 @@ export function ShroudExplorerSection() {
             activeHotspot={hotspotId}
             onHotspotSelect={setHotspotId}
           />
+          <div className="rounded-3xl border border-sand-200/10 bg-black/40 p-4 text-sm text-sand-200/80">
+            <p>{mode.description}</p>
+            {renderModeImages(mode.description)}
+          </div>
         </div>
 
         <div className="space-y-6">
@@ -107,6 +236,7 @@ export function ShroudExplorerSection() {
             <Badge variant="outline">Hotspot Map</Badge>
             <CardTitle>{hotspot.label}</CardTitle>
             <CardDescription>{hotspot.description}</CardDescription>
+            {renderHotspotImages(hotspot.description)}
           </CardHeader>
           <CardContent className="space-y-6">
             <Tabs

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
@@ -25,6 +26,12 @@ export function CrucifixionForensics() {
         eyebrow="Crucifixion Forensics"
         title="Roman methods, wounds, and anatomical debates."
         description="Interactively compare wrist-vs-hand discussions, scourging data, and the archaeological record."
+      />
+      <img
+        src="/images/roman-flagrum.jpg"
+        alt="Roman flagrum reference"
+        loading="lazy"
+        className="mb-8 w-full rounded-3xl border border-sand-200/15 object-cover"
       />
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
@@ -85,17 +92,30 @@ export function CrucifixionForensics() {
                     {100 - nailRatio}% Hand Depictions
                   </p>
                   <p className="text-sm text-sand-200/80">
-                    {"<TODO: copy>"} highlight art history references.
+                    Some skeptics argue a medieval artist could have reproduced
+                    these details, but the wrist-wound placement contradicts
+                    most medieval iconography, which typically shows nails
+                    through the palms [9][12]. highlight art history references.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                  <p className="text-sm font-semibold text-sand-50">
-                    {nailRatio}% Wrist Evidence
-                  </p>
-                  <p className="text-sm text-sand-200/80">
-                    {"<TODO: copy>"} highlight anatomical arguments.
-                  </p>
-                </div>
+              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <p className="text-sm font-semibold text-sand-50">
+                  {nailRatio}% Wrist Evidence
+                </p>
+                <p className="text-sm text-sand-200/80">
+                  Roman crucifixion varied significantly, with victims
+                  sometimes tied, nailed, or both. Archaeological evidence
+                  confirms that nailing through the feet was practiced, and
+                  wrist nailing is biomechanically more plausible than palm
+                  nailing [5][7][12]. highlight anatomical arguments.
+                </p>
+                <img
+                  src="/images/crucifixion-wrist-vs-palm-diagram.jpg"
+                  alt="Wrist versus palm nailing diagram"
+                  loading="lazy"
+                  className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+                />
+              </div>
             </div>
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
 import Image from "next/image";
@@ -27,6 +28,24 @@ export function SudariumComparison() {
         description="Use the slider to overlay the Sudarium of Oviedo with the face region of the Shroud."
         badgeVariant="emerald"
       />
+      <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+        Sudarium full cloth reference
+      </p>
+      <img
+        src="/images/sudarium-full-cloth.jpg"
+        alt="Sudarium full cloth"
+        loading="lazy"
+        className="mb-6 w-full rounded-3xl border border-sand-200/15 object-cover"
+      />
+      <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+        Provenance map overview
+      </p>
+      <img
+        src="/images/sudarium-provenance-map.jpg"
+        alt="Sudarium provenance map"
+        loading="lazy"
+        className="mb-10 w-full rounded-3xl border border-sand-200/15 object-cover"
+      />
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>
@@ -35,6 +54,24 @@ export function SudariumComparison() {
               Slide to align bloodstain features. Placeholder images will be replaced with
               high-res assets later.
             </CardDescription>
+            <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+              Sudarium bloodstain overlay comparison
+            </p>
+            <img
+              src="/images/sudarium-shroud-overlay.jpg"
+              alt="Sudarium overlay comparison"
+              loading="lazy"
+              className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+            <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
+              Sudarium bloodstain detail
+            </p>
+            <img
+              src="/images/sudarium-blood-closeup.jpg"
+              alt="Sudarium bloodstain close-up"
+              loading="lazy"
+              className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="relative h-64 overflow-hidden rounded-3xl border border-sand-200/15">
@@ -70,8 +107,9 @@ export function SudariumComparison() {
               />
             </label>
             <div className="rounded-3xl border border-sand-200/10 bg-sand-900/40 p-4 text-sm text-sand-200/80">
-              {"<TODO: copy>"} Provide balanced commentary on provenance timeline
-              and matching/mismatching features.
+              Critics caution that pattern matching is subjective and does not
+              conclusively prove a common origin [28]. Provide balanced
+              commentary on provenance timeline and matching/mismatching features.
             </div>
           </CardContent>
         </Card>

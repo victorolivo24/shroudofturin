@@ -1,5 +1,7 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
+import type { JSX } from "react";
 import { useState } from "react";
 import Image from "next/image";
 import { SectionShell } from "@/components/layout/header";
@@ -23,6 +25,45 @@ export function BloodSerumLab() {
   const [bloodBeforeImage, setBloodBeforeImage] = useState(true);
   const [tab, setTab] = useState(bloodLabTabs[0].id);
 
+  const renderTabImages = (body: string) => {
+    const normalized = body.toLowerCase();
+    const nodes: JSX.Element[] = [];
+    if (normalized.includes("uv halo") || normalized.includes("serum halo")) {
+      nodes.push(
+        <img
+          key="tab-uv"
+          src="/images/shroud-uv-halo-closeup.png"
+          alt="UV halo inset"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (normalized.includes("bilirubin")) {
+      nodes.push(
+        <img
+          key="tab-bilirubin"
+          src="/images/bilirubin-trauma-comparison.png"
+          alt="Bilirubin visualization"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    if (normalized.includes("1978 sturp") || normalized.includes("sturp investigation")) {
+      nodes.push(
+        <img
+          key="tab-sturp"
+          src="/images/sturp-team-researchers-4.jpg"
+          alt="STURP team reference"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />,
+      );
+    }
+    return nodes;
+  };
+
   return (
     <SectionShell id="blood-lab">
       <SectionHeader
@@ -30,6 +71,18 @@ export function BloodSerumLab() {
         title="UV halos, bilirubin, and sequencing the blood vs image debate."
         description="Use the controls to visualize UV fluorescence, tweak bilirubin estimates, and study chemistry notes."
         badgeVariant="emerald"
+      />
+      <img
+        src="/images/shroud-uv-halo-closeup.png"
+        alt="UV serum halo close-up"
+        loading="lazy"
+        className="mb-6 w-full rounded-3xl border border-sand-200/15 object-cover"
+      />
+      <img
+        src="/images/bilirubin-trauma-comparison.png"
+        alt="Bilirubin trauma comparison"
+        loading="lazy"
+        className="mb-10 w-full rounded-3xl border border-sand-200/15 object-cover"
       />
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
@@ -100,7 +153,10 @@ export function BloodSerumLab() {
                   Blood precedes image
                 </p>
                 <p className="text-xs text-sand-200/70">
-                  {"<TODO: copy>"} summary of both sides.
+                  Microscopy suggests the body image does not appear beneath the
+                  bloodstains, meaning the blood transferred to the cloth first,
+                  with the image forming afterward by an unknown mechanism
+                  [10][15]. summary of both sides.
                 </p>
               </div>
               <Switch
@@ -130,6 +186,7 @@ export function BloodSerumLab() {
                   <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4 text-sm text-sand-200/80">
                     {item.body}
                   </div>
+                  {renderTabImages(item.body)}
                 </TabsContent>
               ))}
             </Tabs>

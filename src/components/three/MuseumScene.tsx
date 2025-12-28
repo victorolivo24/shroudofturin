@@ -33,17 +33,20 @@ export function MuseumScene() {
       {
         position: [-1.6, 0.5, 0],
         label: "Spectral Lab",
-        caption: "<TODO: copy>",
+        caption:
+          "Ultraviolet photographs taken during the 1978 STURP investigation revealed fluorescent \"serum halos\" surrounding many bloodstains, indicating natural separation of blood components as they dried [10][13].",
       },
       {
         position: [0, 0.7, -0.3],
         label: "Negative Discovery",
-        caption: "<TODO: copy>",
+        caption:
+          "In 1898, Secondo Pia photographed the Shroud and discovered that its negative plate revealed a lifelike positive image—implying the Shroud itself behaves like a photographic negative. This was confirmed by Giuseppe Enrie in 1931 [18].",
       },
       {
         position: [1.6, 0.4, 0],
         label: "3D Relief Map",
-        caption: "<TODO: copy>",
+        caption:
+          "When processed using a NASA VP-8 Image Analyzer in 1976, the Shroud image produced natural three-dimensional topography, something ordinary photographs or paintings do not generate [19].",
       },
     ],
     [],

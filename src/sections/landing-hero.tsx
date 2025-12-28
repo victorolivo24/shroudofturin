@@ -22,9 +22,9 @@ export function LandingHero() {
             The Shroud of Turin, re-examined through science, history, and debate.
           </h1>
           <p className="text-lg text-sand-200/80">
-            {"<TODO: copy>"} Provide a concise primer about what the Shroud is,
-            when it appears historically, and why it remains contested. Every
-            section below balances supporting and skeptical interpretations.
+            Researchers examine the Shroud using chemistry, medical forensics,
+            textile analysis, blood chemistry, ultraviolet photography,
+            radiocarbon dating, and image processing technologies [2][3][4].
           </p>
           <div className="flex flex-wrap gap-4">
             <Button asChild size="lg">
@@ -41,9 +41,11 @@ export function LandingHero() {
               What is the Shroud?
             </p>
             <p className="mt-4 text-sand-50">
-              {"<TODO: copy>"} Provide a neutral overview referencing its
-              dimensions, linen weave, imagery, and documented chain-of-custody
-              stepping stones.
+              The Shroud of Turin is a linen cloth measuring about 4.4 × 1.1
+              meters that bears a faint front-and-back image of a crucified man.
+              Its earliest confirmed historical appearance is in the mid-14th
+              century in Lirey, France [1]. Today it is kept in the Cathedral of
+              St. John the Baptist in Turin, Italy.
             </p>
           </div>
         </div>
@@ -68,7 +70,9 @@ export function LandingHero() {
               Subtle 3D parallax hero
             </h3>
             <p className="text-sm text-sand-200/80">
-              {"<TODO: copy>"} Outline what visitors will experience.
+              When processed using a NASA VP-8 Image Analyzer in 1976, the
+              Shroud image produced natural three-dimensional topography,
+              something ordinary photographs or paintings do not generate [19].
             </p>
           </div>
           <div className="rounded-2xl border border-sand-200/10 bg-black/60 p-4 text-sm text-sand-200/80">

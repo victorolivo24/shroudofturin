@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
@@ -20,6 +21,40 @@ export function DatingLab() {
   const [pollSelection, setPollSelection] = useState<string | null>(null);
   const active = datingEvidence.find((item) => item.id === activeId)!;
 
+  const renderActiveImage = (id: string) => {
+    if (id === "radiocarbon") {
+      return (
+        <img
+          src="/images/shroud-c14-sample-1988.jpg"
+          alt="1988 radiocarbon sample reference"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />
+      );
+    }
+    if (id === "reweave") {
+      return (
+        <img
+          src="/images/shroud-rogers-cotton-fibers.jpg"
+          alt="Rogers cotton fiber evidence"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />
+      );
+    }
+    if (id === "fanti") {
+      return (
+        <img
+          src="/images/fanti-spectroscopy-setup.jpg"
+          alt="Fanti spectroscopy setup"
+          loading="lazy"
+          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <SectionShell id="dating-lab">
       <SectionHeader
@@ -32,7 +67,14 @@ export function DatingLab() {
         <Card className="bg-black/40">
           <CardHeader>
             <Badge variant="emerald">Evidence Timeline</Badge>
+            <img
+              src="/images/shroud-dating-timeline.jpg"
+              alt="Dating timeline graphic"
+              loading="lazy"
+              className="mt-2 w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
             <CardTitle>{active.label}</CardTitle>
+            {renderActiveImage(active.id)}
             <CardDescription>
               Year marker: <strong>{active.value}</strong>
             </CardDescription>
@@ -81,8 +123,8 @@ export function DatingLab() {
           <CardHeader>
             <Badge variant="amber">Poll Widget Placeholder</Badge>
             <CardDescription>
-              “Which evidence do you find more convincing?” (frontend polls will
-              hook into backend later).
+              &quot;Which evidence do you find more convincing?&quot; (frontend
+              polls will hook into backend later).
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

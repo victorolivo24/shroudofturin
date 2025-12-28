@@ -40,8 +40,12 @@ export function FaithLens() {
         {enabled ? (
           <CardContent className="space-y-4 text-sm text-sand-200/80">
             <p>
-              {"<TODO: copy>"} Provide gentle commentary referencing how
-              believers see the scientific evidence through theological frameworks.
+              The wounds visible on the Shroud—scourging, wrist-area nailing,
+              feet wounds, scalp punctures, and a side wound—are consistent with
+              forensic expectations for a Roman execution, though not definitive
+              proof of identity [8][9][10]. Provide gentle commentary referencing
+              how believers see the scientific evidence through theological
+              frameworks.
             </p>
             <p>
               Emphasize respect for differing conclusions while keeping the science
