@@ -63,6 +63,62 @@ export function DatingLab() {
         description="Review the 1988 test, textile repair theories, and Fanti's mechanical/spectroscopic work."
         badgeVariant="amber"
       />
+      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+          SECTION 5 — DATING THE SHROUD
+        </p>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Radiocarbon Dating (1988)</h3>
+          <p className="text-sand-200/80">
+            Radiocarbon tests dated a corner sample of the cloth to 1260–1390 CE. The test has
+            been widely debated due to concerns over sampling location and textile repair.
+          </p>
+          <img
+            src="/images/shroud-c14-sample-1988.jpg"
+            alt="Radiocarbon sample from 1988"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Rogers’ Textile Analysis</h3>
+          <p className="text-sand-200/80">
+            Chemist Raymond Rogers identified cotton fibers and dye in the sampled area,
+            suggesting it may not represent the original cloth.
+          </p>
+          <img
+            src="/images/shroud-rogers-cotton-fibers.jpg"
+            alt="Rogers cotton fiber evidence"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Alternative Spectroscopic Dating</h3>
+          <p className="text-sand-200/80">
+            Studies by Giulio Fanti using infrared and mechanical methods yielded much earlier
+            date ranges, though these methods remain contested.
+          </p>
+          <img
+            src="/images/fanti-spectroscopy-setup.jpg"
+            alt="Fanti spectroscopy setup"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Timeline Overview</h3>
+          <p className="text-sand-200/80">
+            A synthesis of historical, scientific, and textual evidence.
+          </p>
+          <img
+            src="/images/shroud-dating-timeline.jpg"
+            alt="Shroud dating timeline overview"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>

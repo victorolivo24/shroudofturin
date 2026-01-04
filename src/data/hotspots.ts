@@ -1,9 +1,3 @@
-import {
-  PLACEHOLDER_SHROUD,
-  PLACEHOLDER_SUDARIUM,
-  PLACEHOLDER_UV,
-} from "./placeholders";
-
 export type Hotspot = {
   id: string;
   label: string;
@@ -117,7 +111,7 @@ export const explorerModes: ExplorerMode[] = [
     description:
       "The body image affects only the top 0.2 microns of each linen fibril, with no penetration into the fibers—unlike paint or dye. STURP analyses concluded no pigments or binders account for the image [2][17].",
     instructions: "Use zoom to inspect weave density and burn marks.",
-    placeholder: PLACEHOLDER_SHROUD,
+    placeholder: "/images/shroud_full_body.jpg",
   },
   {
     id: "negative",
@@ -125,7 +119,7 @@ export const explorerModes: ExplorerMode[] = [
     description:
       "In 1898, Secondo Pia photographed the Shroud and discovered that its negative plate revealed a lifelike positive image—implying the Shroud itself behaves like a photographic negative. This was confirmed by Giuseppe Enrie in 1931 [18].",
     instructions: "Highlights tonal reversals discovered in 1898.",
-    placeholder: PLACEHOLDER_SHROUD,
+    placeholder: "/images/shroud_negative.jpg",
   },
   {
     id: "uv",
@@ -133,7 +127,7 @@ export const explorerModes: ExplorerMode[] = [
     description:
       "Ultraviolet photographs taken during the 1978 STURP investigation revealed fluorescent \"serum halos\" surrounding many bloodstains, indicating natural separation of blood components as they dried [10][13].",
     instructions: "Shows possible serum halos recorded under UV.",
-    placeholder: PLACEHOLDER_UV,
+    placeholder: "/images/shroud-uv-fluorescence.jpg",
   },
   {
     id: "relief",
@@ -141,6 +135,6 @@ export const explorerModes: ExplorerMode[] = [
     description:
       "When processed using a NASA VP-8 Image Analyzer in 1976, the Shroud image produced natural three-dimensional topography, something ordinary photographs or paintings do not generate [19].",
     instructions: "Pseudo-3D height map derived from intensity curves.",
-    placeholder: PLACEHOLDER_SUDARIUM,
+    placeholder: "/images/shroud-vp8-3d-render.jpg",
   },
 ];

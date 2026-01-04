@@ -5,6 +5,7 @@ import { BloodSerumLab } from "@/sections/blood-serum-lab";
 import { ImageFormationSection } from "@/sections/image-formation";
 import { DatingLab } from "@/sections/dating-lab";
 import { SudariumComparison } from "@/sections/sudarium-comparison";
+import { ReferenceResearch } from "@/sections/reference-research";
 import { DebateRoom } from "@/sections/debate-room";
 import { FaithLens } from "@/sections/faith-lens";
 import { SourcesLibrary } from "@/sections/sources-library";
@@ -19,6 +20,7 @@ export default function Home() {
       <ImageFormationSection />
       <DatingLab />
       <SudariumComparison />
+      <ReferenceResearch />
       <DebateRoom />
       <FaithLens />
       <SourcesLibrary />

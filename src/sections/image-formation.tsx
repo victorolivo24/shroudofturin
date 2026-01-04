@@ -36,6 +36,64 @@ export function ImageFormationSection() {
         title="Explore surface depth, negatives, and competing hypotheses."
         description="Toggle between image states, scan the superficiality, and compare explanations from both advocates and skeptics."
       />
+      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+          SECTION 4 — IMAGE FORMATION
+        </p>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">STURP Microscopy</h3>
+          <p className="text-sand-200/80">
+            The 1978 Shroud of Turin Research Project (STURP) concluded the image is not the
+            result of paint, dye, or pigment. The coloration exists only on the outermost
+            fibrils.
+          </p>
+          <img
+            src="/images/shroud-linen-fibers.jpg"
+            alt="STURP microscopy reference"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Three-Dimensional Encoding</h3>
+          <p className="text-sand-200/80">
+            When processed by a VP-8 image analyzer, the Shroud’s image produces coherent 3D
+            relief — unlike ordinary photographs or paintings.
+          </p>
+          <img
+            src="/images/shroud-vp8-3d-render.jpg"
+            alt="VP-8 3D rendering"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Reverse-Side Image</h3>
+          <p className="text-sand-200/80">
+            A faint image exists on the reverse side of the cloth, suggesting an image
+            formation process that affected both surfaces.
+          </p>
+          <img
+            src="/images/shroud-reverse-side-face.jpg"
+            alt="Reverse-side image"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Bas-Relief Hypothesis</h3>
+          <p className="text-sand-200/80">
+            Some researchers propose that a low-relief model could reproduce aspects of the
+            image, though this remains debated.
+          </p>
+          <img
+            src="/images/shroud-bas-relief-model.jpg"
+            alt="Bas-relief hypothesis model"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>

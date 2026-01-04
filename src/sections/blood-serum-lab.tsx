@@ -72,18 +72,65 @@ export function BloodSerumLab() {
         description="Use the controls to visualize UV fluorescence, tweak bilirubin estimates, and study chemistry notes."
         badgeVariant="emerald"
       />
-      <img
-        src="/images/shroud-uv-halo-closeup.png"
-        alt="UV serum halo close-up"
-        loading="lazy"
-        className="mb-6 w-full rounded-3xl border border-sand-200/15 object-cover"
-      />
-      <img
-        src="/images/bilirubin-trauma-comparison.png"
-        alt="Bilirubin trauma comparison"
-        loading="lazy"
-        className="mb-10 w-full rounded-3xl border border-sand-200/15 object-cover"
-      />
+      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+          SECTION 3 — BLOOD &amp; SERUM ANALYSIS
+        </p>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">UV Serum Halos</h3>
+          <p className="text-sand-200/80">
+            Under ultraviolet light, bloodstains reveal clear serum halos — consistent with
+            post-traumatic blood separation.
+          </p>
+          <img
+            src="/images/shroud-uv-halo-closeup.png"
+            alt="UV serum halo close-up"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Bilirubin and Trauma</h3>
+          <p className="text-sand-200/80">
+            Chemical analysis detected elevated bilirubin levels, a byproduct of severe
+            trauma. This may explain why the blood appears reddish rather than dark brown
+            despite age.
+          </p>
+          <img
+            src="/images/bilirubin-trauma-comparison.png"
+            alt="Bilirubin trauma comparison"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Blood Flow Patterns</h3>
+          <p className="text-sand-200/80">
+            Distinct blood flows appear on the face, arms, and side, consistent with
+            gravity-driven movement in a crucified position.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <img
+              src="/images/shroud-blood-face-closeup.png"
+              alt="Blood flow on the face"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+            <img
+              src="/images/shroud-blood-arm-closeup.png"
+              alt="Blood flow on the arm"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+            <img
+              src="/images/shroud-blood-side-closeup.png"
+              alt="Blood flow on the side"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+          </div>
+        </div>
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>

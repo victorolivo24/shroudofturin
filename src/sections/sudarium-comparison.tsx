@@ -28,24 +28,61 @@ export function SudariumComparison() {
         description="Use the slider to overlay the Sudarium of Oviedo with the face region of the Shroud."
         badgeVariant="emerald"
       />
-      <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-        Sudarium full cloth reference
-      </p>
-      <img
-        src="/images/sudarium-full-cloth.jpg"
-        alt="Sudarium full cloth"
-        loading="lazy"
-        className="mb-6 w-full rounded-3xl border border-sand-200/15 object-cover"
-      />
-      <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-        Provenance map overview
-      </p>
-      <img
-        src="/images/sudarium-provenance-map.jpg"
-        alt="Sudarium provenance map"
-        loading="lazy"
-        className="mb-10 w-full rounded-3xl border border-sand-200/15 object-cover"
-      />
+      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+          SECTION 6 — THE SUDARIUM OF OVIEDO
+        </p>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">The Sudarium</h3>
+          <p className="text-sand-200/80">
+            A bloodstained cloth preserved in Spain since at least the 7th century,
+            traditionally associated with the burial of Jesus.
+          </p>
+          <img
+            src="/images/sudarium-full-cloth.jpg"
+            alt="Sudarium full cloth"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Bloodstain Analysis</h3>
+          <p className="text-sand-200/80">
+            Patterns correspond to facial blood flows consistent with the Shroud image.
+          </p>
+          <img
+            src="/images/sudarium-blood-closeup.jpg"
+            alt="Sudarium blood close-up"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Overlay Comparison</h3>
+          <p className="text-sand-200/80">
+            When digitally overlaid, stain patterns show notable alignment between the
+            Sudarium and the Shroud.
+          </p>
+          <img
+            src="/images/sudarium-shroud-overlay.jpg"
+            alt="Sudarium overlay comparison"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+        <div className="space-y-3">
+          <h3 className="text-2xl font-semibold">Provenance and History</h3>
+          <p className="text-sand-200/80">
+            Historical records trace the Sudarium’s journey from Jerusalem to Spain.
+          </p>
+          <img
+            src="/images/sudarium-provenance-map.jpg"
+            alt="Sudarium provenance map"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </div>
+      </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>
