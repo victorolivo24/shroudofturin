@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo } from "react";
+import {
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent,
+  type WheelEvent,
+} from "react";
 import { cn } from "@/lib/utils";
 import type { Hotspot, ExplorerMode } from "@/data/hotspots";
 
@@ -26,6 +32,9 @@ export function ShroudViewer({
   onHotspotSelect,
 }: ShroudViewerProps) {
   const zoomValue = clamp(zoom);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const pointerOrigin = useRef({ x: 0, y: 0 });
 
   const overlayClass = useMemo(() => {
     switch (mode.id) {
@@ -40,6 +49,37 @@ export function ShroudViewer({
     }
   }, [mode.id]);
 
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    setIsPanning(true);
+    pointerOrigin.current = {
+      x: event.clientX - offset.x,
+      y: event.clientY - offset.y,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isPanning) return;
+    setOffset({
+      x: event.clientX - pointerOrigin.current.x,
+      y: event.clientY - pointerOrigin.current.y,
+    });
+  };
+
+  const stopPan = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isPanning) return;
+    event.currentTarget.releasePointerCapture(event.pointerId);
+    setIsPanning(false);
+  };
+
+  const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setOffset((prev) => ({
+      x: prev.x - event.deltaX * 0.5,
+      y: prev.y - event.deltaY * 0.5,
+    }));
+  };
+
   return (
     <div className="relative overflow-hidden rounded-[32px] border border-sand-200/15 bg-black/60 p-4 shadow-2xl shadow-black/40">
       <div
@@ -47,22 +87,33 @@ export function ShroudViewer({
         style={{ perspective: "1000px" }}
       >
         <div
-          className="absolute inset-0 bg-gradient-to-br from-sand-700/20 to-black/60"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sand-700/20 to-black/60"
           aria-hidden
         />
-        <Image
-          src={mode.placeholder}
-          alt={`${mode.label} placeholder`}
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className={cn(
-            "object-cover transition duration-500 will-change-transform",
-            overlayClass,
-          )}
-          style={{
-            transform: `scale(${zoomValue})`,
-          }}
-        />
+        <div
+          className="absolute inset-0 cursor-grab active:cursor-grabbing"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={stopPan}
+          onPointerLeave={stopPan}
+          onWheel={handleWheel}
+        >
+          <div
+            className="relative h-full w-full transition-transform duration-200 ease-out will-change-transform"
+            style={{
+              transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoomValue})`,
+            }}
+          >
+            <Image
+              src={mode.placeholder}
+              alt={`${mode.label} visualization`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className={cn("object-cover", overlayClass)}
+              priority={false}
+            />
+          </div>
+        </div>
         <div className="pointer-events-none absolute inset-0 border border-sand-50/5" />
         <div className="absolute inset-0">
           {hotspots.map((hotspot) => (

@@ -32,6 +32,52 @@ const infoModes = [
   { id: "skeptic", label: "Skeptical" },
 ];
 
+const viewingPanels: Record<
+  ExplorerMode["id"],
+  {
+    title: string;
+    paragraphs: string[];
+    imageSrc: string;
+    imageAlt: string;
+  }
+> = {
+  normal: {
+    title: "The Shroud of Turin",
+    paragraphs: [
+      "The Shroud of Turin is a linen cloth measuring approximately 4.4 × 1.1 meters, bearing the faint front-and-back image of a crucified man. Preserved in the Cathedral of Saint John the Baptist in Turin, Italy, it has been the subject of scientific, historical, and theological investigation for over a century.",
+      "The image is not painted, printed, or dyed, yet it displays anatomical precision, three-dimensional information, and forensic detail unmatched by known artistic techniques.",
+    ],
+    imageSrc: "/images/shroud_full_body.jpg",
+    imageAlt: "Full Shroud of Turin",
+  },
+  negative: {
+    title: "The Photographic Negative",
+    paragraphs: [
+      "In 1898, Italian photographer Secondo Pia photographed the Shroud. When he developed the photographic negative, the image appeared as a natural positive — revealing a level of anatomical detail not visible to the naked eye.",
+      "This discovery transformed the Shroud from a devotional object into a subject of scientific inquiry.",
+    ],
+    imageSrc: "/images/shroud_negative.jpg",
+    imageAlt: "Photographic negative of the Shroud",
+  },
+  uv: {
+    title: "Ultraviolet Fluorescence & Serum Halos",
+    paragraphs: [
+      "Ultraviolet photography reveals serum halos surrounding many bloodstains — a phenomenon consistent with blood separation following trauma. These features are invisible under normal lighting conditions and were not detectable prior to modern forensic techniques.",
+    ],
+    imageSrc: "/images/shroud-uv-fluorescence.jpg",
+    imageAlt: "UV fluorescence serum halos",
+  },
+  relief: {
+    title: "3D Relief Interpretation",
+    paragraphs: [
+      "When processed by a NASA VP-8 image analyzer, the Shroud’s grayscale values translate into a natural 3D relief, indicating that brightness correlates with distance from the cloth.",
+      "Researchers debate whether this relief implies contact with an actual body or a carefully crafted bas-relief, but the effect remains unique among historical images.",
+    ],
+    imageSrc: "/images/shroud-vp8-3d-render.jpg",
+    imageAlt: "VP-8 style 3D relief rendering",
+  },
+};
+
 export function ShroudExplorerSection() {
   const [modeId, setModeId] = useState<ExplorerMode["id"]>("normal");
   const [zoom, setZoom] = useState(1.15);
@@ -46,6 +92,7 @@ export function ShroudExplorerSection() {
   const hotspot = shroudHotspots.find((item) => item.id === hotspotId)!;
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
+  const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
 
   const renderModeImages = (content: string) => {
     const normalized = content.toLowerCase();
@@ -157,60 +204,36 @@ export function ShroudExplorerSection() {
         badgeVariant="amber"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+        <div>
+          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+            Viewing Modes
+          </p>
+          <ToggleGroup
+            type="single"
+            value={modeId}
+            onValueChange={(value) => value && setModeId(value as ExplorerMode["id"])}
+            className="mt-4 flex flex-wrap gap-3"
+          >
+            {explorerModes.map((item) => (
+              <ToggleGroupItem key={item.id} value={item.id}>
+                {item.label}
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </div>
         <div className="space-y-4">
           <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
             SECTION 1 — SHROUD EXPLORER
           </p>
-          <h3 className="text-2xl font-semibold">The Shroud of Turin</h3>
-          <p className="text-sand-200/80">
-            The Shroud of Turin is a linen cloth measuring approximately 4.4 × 1.1 meters,
-            bearing the faint front-and-back image of a crucified man. Preserved in the
-            Cathedral of Saint John the Baptist in Turin, Italy, it has been the subject of
-            scientific, historical, and theological investigation for over a century.
-          </p>
-          <p className="text-sand-200/80">
-            The image is not painted, printed, or dyed, yet it displays anatomical precision,
-            three-dimensional information, and forensic detail unmatched by known artistic
-            techniques.
-          </p>
+          <h3 className="text-2xl font-semibold">{activePanel.title}</h3>
+          {activePanel.paragraphs.map((paragraph, index) => (
+            <p key={index} className="text-sand-200/80">
+              {paragraph}
+            </p>
+          ))}
           <img
-            src="/images/shroud_full_body.jpg"
-            alt="Full Shroud of Turin"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
-        </div>
-        <div className="space-y-4">
-          <h4 className="text-xl font-semibold">The Photographic Negative</h4>
-          <p className="text-sand-200/80">
-            In 1898, Italian photographer Secondo Pia photographed the Shroud. When he
-            developed the photographic negative, the image appeared as a natural positive —
-            revealing a level of anatomical detail not visible to the naked eye.
-          </p>
-          <p className="text-sand-200/80">
-            This discovery transformed the Shroud from a devotional object into a subject of
-            scientific inquiry.
-          </p>
-          <img
-            src="/images/shroud_negative.jpg"
-            alt="Photographic negative of the Shroud"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
-        </div>
-        <div className="space-y-4">
-          <h4 className="text-xl font-semibold">
-            Ultraviolet Fluorescence &amp; Serum Halos
-          </h4>
-          <p className="text-sand-200/80">
-            Ultraviolet photography reveals serum halos surrounding many bloodstains — a
-            phenomenon consistent with blood separation following trauma. These features are
-            invisible under normal lighting conditions and were not detectable prior to
-            modern forensic techniques.
-          </p>
-          <img
-            src="/images/shroud-uv-fluorescence.jpg"
-            alt="UV fluorescence serum halos"
+            src={activePanel.imageSrc}
+            alt={activePanel.imageAlt}
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
           />
@@ -255,40 +278,8 @@ export function ShroudExplorerSection() {
       </div>
       <div className="grid gap-10 lg:grid-cols-[1.1fr,0.9fr]">
         <div className="space-y-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-sand-200/70">
-              Viewing Modes
-            </p>
-            <ToggleGroup
-              type="single"
-              value={modeId}
-              onValueChange={(value) => value && setModeId(value as ExplorerMode["id"])}
-              className="mt-4 flex flex-wrap gap-3"
-            >
-              {explorerModes.map((item) => (
-                <ToggleGroupItem key={item.id} value={item.id}>
-                  {item.label}
-                  {item.label.includes("Photographic Negative") && (
-                    <img
-                      src="/images/shroud_negative.jpg"
-                      alt="Photographic negative quick reference"
-                      loading="lazy"
-                      className="mt-2 w-full rounded-2xl border border-sand-200/20 object-cover"
-                    />
-                  )}
-                  {item.label.includes("UV Fluorescence") && (
-                    <img
-                      src="/images/shroud-uv-fluorescence.jpg"
-                      alt="UV fluorescence preview"
-                      loading="lazy"
-                      className="mt-2 w-full rounded-2xl border border-sand-200/20 object-cover"
-                    />
-                  )}
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          </div>
           <ShroudViewer
+            key={mode.id}
             mode={mode}
             zoom={zoom}
             onZoomChange={setZoom}
