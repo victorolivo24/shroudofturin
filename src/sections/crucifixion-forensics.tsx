@@ -43,7 +43,7 @@ export function CrucifixionForensics() {
             src="/images/crucifixion-wrist-vs-palm-diagram.jpg"
             alt="Wrist vs palm nailing diagram"
             loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            className="mx-auto w-full max-w-[520px] rounded-2xl border border-sand-200/15 object-contain"
           />
         </div>
         <div className="space-y-3">
@@ -57,7 +57,7 @@ export function CrucifixionForensics() {
             src="/images/roman-flagrum.jpg"
             alt="Roman flagrum reference"
             loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            className="mx-auto w-full max-w-[520px] rounded-2xl border border-sand-200/15 object-contain"
           />
         </div>
         <div className="space-y-3">
@@ -70,7 +70,7 @@ export function CrucifixionForensics() {
             src="/images/crown-of-thorns-wound-diagram.jpg"
             alt="Crown of thorns wound pattern"
             loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            className="mx-auto w-full max-w-[520px] rounded-2xl border border-sand-200/15 object-contain"
           />
         </div>
         <div className="space-y-3">
@@ -84,7 +84,7 @@ export function CrucifixionForensics() {
             src="/images/jehohanan-heel-bone-nail.png"
             alt="Jehohanan heel bone nail"
             loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            className="mx-auto w-full max-w-[520px] rounded-2xl border border-sand-200/15 object-contain"
           />
         </div>
       </div>
