@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import {
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -37,6 +38,8 @@ export function ShroudViewer({
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [isPanning, setIsPanning] = useState(false);
   const pointerOrigin = useRef({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   const overlayClass = useMemo(() => {
     switch (mode.id) {
@@ -51,6 +54,32 @@ export function ShroudViewer({
     }
   }, [mode.id]);
 
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        setDimensions({ width, height });
+      }
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  const clampAxis = (value: number, dimension: number) => {
+    if (zoomValue <= 1 || dimension <= 0) return 0;
+    const maxOffset = ((zoomValue - 1) * dimension) / 2;
+    return Math.max(-maxOffset, Math.min(maxOffset, value));
+  };
+
+  const applyOffset = (x: number, y: number) => {
+    setOffset({
+      x: clampAxis(x, dimensions.width),
+      y: clampAxis(y, dimensions.height),
+    });
+  };
+
   const isHotspotTarget = (target: EventTarget | null) =>
     target instanceof HTMLElement && target.closest("[data-hotspot-target]");
 
@@ -59,6 +88,7 @@ export function ShroudViewer({
       setIsPanning(false);
       return;
     }
+    if (zoomValue <= 1) return;
     setIsPanning(true);
     pointerOrigin.current = {
       x: event.clientX - offset.x,
@@ -69,10 +99,10 @@ export function ShroudViewer({
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     if (!isPanning) return;
-    setOffset({
-      x: event.clientX - pointerOrigin.current.x,
-      y: event.clientY - pointerOrigin.current.y,
-    });
+    applyOffset(
+      event.clientX - pointerOrigin.current.x,
+      event.clientY - pointerOrigin.current.y,
+    );
   };
 
   const stopPan = (event: PointerEvent<HTMLDivElement>) => {
@@ -82,12 +112,18 @@ export function ShroudViewer({
   };
 
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
+    if (zoomValue <= 1) return;
     event.preventDefault();
-    setOffset((prev) => ({
-      x: prev.x - event.deltaX,
-      y: prev.y - event.deltaY,
-    }));
+    applyOffset(offset.x - event.deltaX, offset.y - event.deltaY);
   };
+
+  const effectiveOffset =
+    zoomValue <= 1
+      ? { x: 0, y: 0 }
+      : {
+          x: clampAxis(offset.x, dimensions.width),
+          y: clampAxis(offset.y, dimensions.height),
+        };
 
   return (
     <div className="relative overflow-hidden rounded-[32px] border border-sand-200/15 bg-black/60 p-4 shadow-2xl shadow-black/40">
@@ -107,6 +143,7 @@ export function ShroudViewer({
             "absolute inset-0 cursor-grab",
             isPanning && "cursor-grabbing",
           )}
+          ref={containerRef}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
@@ -116,7 +153,7 @@ export function ShroudViewer({
           <div
             className="relative h-full w-full transition-transform duration-200 ease-out will-change-transform"
             style={{
-              transform: `translate(${offset.x}px, ${offset.y}px)`,
+              transform: `translate(${effectiveOffset.x}px, ${effectiveOffset.y}px)`,
             }}
           >
             <div
@@ -141,10 +178,8 @@ export function ShroudViewer({
                     key={hotspot.id}
                     data-hotspot-target
                     className={cn(
-                      "absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black/50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber",
-                      hotspot.id === activeHotspot
-                        ? "bg-accent-amber shadow-lg shadow-accent-amber/50"
-                        : "bg-white/70",
+                      "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/70 bg-transparent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/60",
+                      hotspot.id === activeHotspot && "border-4 border-accent-amber shadow-[0_0_12px_rgba(255,196,94,0.7)]",
                     )}
                     style={{
                       left: `${hotspot.coords.x}%`,
