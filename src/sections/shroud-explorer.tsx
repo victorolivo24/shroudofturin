@@ -23,13 +23,6 @@ import {
 import { ShroudViewer } from "@/components/shared/shroud-viewer";
 import { Badge } from "@/components/ui/badge";
 import { sourceLibrary } from "@/data/sources";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const infoModes = [
-  { id: "science", label: "Scientific" },
-  { id: "pro", label: "Pro-Authenticity" },
-  { id: "skeptic", label: "Skeptical" },
-];
 
 const viewingPanels: Record<
   ExplorerMode["id"],
@@ -83,12 +76,9 @@ export function ShroudExplorerSection() {
   const [hotspotId, setHotspotId] = useState<Hotspot["id"]>(
     shroudHotspots[0].id,
   );
-  const [infoMode, setInfoMode] = useState<(typeof infoModes)[number]["id"]>(
-    "science",
-  );
-
   const mode = explorerModes.find((item) => item.id === modeId)!;
   const hotspot = shroudHotspots.find((item) => item.id === hotspotId)!;
+  const scienceNote = hotspot.scienceNote;
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
@@ -169,17 +159,92 @@ export function ShroudExplorerSection() {
           </div>
         </div>
       </div>
-      <div className="grid gap-10 lg:grid-cols-[1.1fr,0.9fr]">
-        <div className="space-y-6">
-          <ShroudViewer
-            key={mode.id}
-            mode={mode}
-            zoom={zoom}
-            onZoomChange={setZoom}
-            hotspots={shroudHotspots}
-            activeHotspot={hotspotId}
-            onHotspotSelect={setHotspotId}
-          />
+      <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
+        <div className="space-y-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:grid-cols-[minmax(0,1fr)_minmax(300px,360px)]">
+            <ShroudViewer
+              key={mode.id}
+              mode={mode}
+              zoom={zoom}
+              onZoomChange={setZoom}
+              hotspots={shroudHotspots}
+              activeHotspot={hotspotId}
+              onHotspotSelect={setHotspotId}
+            />
+            <Card className="bg-black/40">
+              <CardHeader>
+                <Badge variant="outline">Hotspot Key</Badge>
+                <CardTitle>{hotspot.label}</CardTitle>
+                <CardDescription>{hotspot.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="rounded-2xl border border-sand-200/15 bg-sand-900/40 p-4 text-sm text-sand-50">
+                  <p>{scienceNote}</p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {shroudHotspots.map((item) => (
+                    <Button
+                      key={item.id}
+                      variant={item.id === hotspotId ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setHotspotId(item.id)}
+                    >
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
+                <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                  <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+                    Sources to Cross-Check
+                  </p>
+                  <ul className="mt-3 space-y-2 text-sm text-sand-200/80">
+                    {hotspot.sources.map((source) => (
+                      <li key={source} className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent-amber" />
+                        {source}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          <Card className="bg-black/50">
+            <CardHeader>
+              <Badge variant="emerald">Modal Preview</Badge>
+              <CardTitle>Pop-up Briefings</CardTitle>
+              <CardDescription>
+                Click any hotspot to surface a balanced briefing. Replace this area
+                with motion/3D panels or video as assets become available.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <p className="text-sm font-medium text-sand-50">
+                  Scientific Explanation
+                </p>
+                <p className="text-sm text-sand-200/80">
+                  {hotspot.scienceNote}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <p className="text-sm font-medium text-sand-50">Pro-Authenticity</p>
+                <p className="text-sm text-sand-200/80">
+                  {hotspot.proAuthenticity}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <p className="text-sm font-medium text-sand-50">Skeptical</p>
+                <p className="text-sm text-sand-200/80">
+                  {hotspot.skepticalView}
+                </p>
+              </div>
+              <p className="text-xs text-sand-200/70">
+                {/* Placeholder for actual modal trigger */}
+                TODO: wire these cards to modal or immersive overlays.
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="space-y-6">
@@ -198,107 +263,6 @@ export function ShroudExplorerSection() {
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-        <Card className="bg-black/40">
-          <CardHeader>
-            <Badge variant="outline">Hotspot Map</Badge>
-            <CardTitle>{hotspot.label}</CardTitle>
-            <CardDescription>{hotspot.description}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <Tabs
-              value={infoMode}
-              onValueChange={(value) =>
-                setInfoMode(value as (typeof infoModes)[number]["id"])
-              }
-            >
-              <TabsList>
-                {infoModes.map((mode) => (
-                  <TabsTrigger key={mode.id} value={mode.id}>
-                    {mode.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {infoModes.map((mode) => (
-                <TabsContent key={mode.id} value={mode.id}>
-                  <div className="rounded-2xl border border-sand-200/15 bg-sand-900/40 p-4 text-sm text-sand-50">
-                    <p>
-                      {mode.id === "science"
-                        ? hotspot.scienceNote
-                        : mode.id === "pro"
-                          ? hotspot.proAuthenticity
-                          : hotspot.skepticalView}
-                    </p>
-                  </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-            <div className="flex flex-wrap gap-3">
-              {shroudHotspots.map((item) => (
-                <Button
-                  key={item.id}
-                  variant={item.id === hotspotId ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setHotspotId(item.id)}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </div>
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-                Sources to Cross-Check
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-sand-200/80">
-                {hotspot.sources.map((source) => (
-                  <li key={source} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-amber" />
-                    {source}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-black/50">
-          <CardHeader>
-            <Badge variant="emerald">Modal Preview</Badge>
-            <CardTitle>Pop-up Briefings</CardTitle>
-            <CardDescription>
-              Click any hotspot to surface a balanced briefing. Replace this area
-              with motion/3D panels or video as assets become available.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-sm font-medium text-sand-50">
-                Scientific Explanation
-              </p>
-              <p className="text-sm text-sand-200/80">
-                {hotspot.scienceNote}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-sm font-medium text-sand-50">Pro-Authenticity</p>
-              <p className="text-sm text-sand-200/80">
-                {hotspot.proAuthenticity}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-sm font-medium text-sand-50">Skeptical</p>
-              <p className="text-sm text-sand-200/80">
-                {hotspot.skepticalView}
-              </p>
-            </div>
-            <p className="text-xs text-sand-200/70">
-              {/* Placeholder for actual modal trigger */}
-              TODO: wire these cards to modal or immersive overlays.
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </SectionShell>
   );
