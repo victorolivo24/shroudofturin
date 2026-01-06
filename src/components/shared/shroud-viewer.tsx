@@ -173,23 +173,28 @@ export function ShroudViewer({
                 priority={false}
               />
               <div className="absolute inset-0">
-                {hotspots.map((hotspot) => (
-                  <button
-                    key={hotspot.id}
-                    data-hotspot-target
-                    className={cn(
-                      "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/70 bg-transparent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/60",
-                      hotspot.id === activeHotspot && "border-4 border-accent-amber shadow-[0_0_12px_rgba(255,196,94,0.7)]",
-                    )}
-                    style={{
-                      left: `${hotspot.coords.x}%`,
-                      top: `${hotspot.coords.y}%`,
-                    }}
-                    onClick={() => onHotspotSelect(hotspot.id)}
-                  >
-                    <span className="sr-only">{hotspot.label}</span>
-                  </button>
-                ))}
+                {hotspots.map((hotspot) => {
+                  const customCoords = hotspot.coordsByMode?.[mode.id];
+                  const coords = customCoords ?? hotspot.coords;
+                  return (
+                    <button
+                      key={hotspot.id}
+                      data-hotspot-target
+                      className={cn(
+                        "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/70 bg-transparent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/60",
+                        hotspot.id === activeHotspot &&
+                          "border-4 border-accent-amber shadow-[0_0_12px_rgba(255,196,94,0.7)]",
+                      )}
+                      style={{
+                        left: `${coords.x}%`,
+                        top: `${coords.y}%`,
+                      }}
+                      onClick={() => onHotspotSelect(hotspot.id)}
+                    >
+                      <span className="sr-only">{hotspot.label}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

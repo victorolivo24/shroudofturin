@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -92,6 +92,12 @@ export function ShroudExplorerSection() {
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
+  const handleCoordinateClick = (event: MouseEvent<HTMLImageElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    alert(`x: ${x.toFixed(1)}%, y: ${y.toFixed(1)}%`);
+  };
 
   return (
     <SectionShell id="shroud-explorer">
@@ -134,6 +140,8 @@ export function ShroudExplorerSection() {
             alt={activePanel.imageAlt}
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            onClick={modeId === "uv" ? handleCoordinateClick : undefined}
+            style={modeId === "uv" ? { cursor: "crosshair" } : undefined}
           />
           <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
