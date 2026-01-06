@@ -130,8 +130,16 @@ export function ShroudExplorerSection() {
             alt={activePanel.imageAlt}
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            onClick={modeId === "uv" ? handleCoordinateClick : undefined}
-            style={modeId === "uv" ? { cursor: "crosshair" } : undefined}
+            onClick={
+              modeId === "uv" || modeId === "negative"
+                ? handleCoordinateClick
+                : undefined
+            }
+            style={
+              modeId === "uv" || modeId === "negative"
+                ? { cursor: "crosshair" }
+                : undefined
+            }
           />
           <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
@@ -209,42 +217,6 @@ export function ShroudExplorerSection() {
               </CardContent>
             </Card>
           </div>
-          <Card className="bg-black/50">
-            <CardHeader>
-              <Badge variant="emerald">Modal Preview</Badge>
-              <CardTitle>Pop-up Briefings</CardTitle>
-              <CardDescription>
-                Click any hotspot to surface a balanced briefing. Replace this area
-                with motion/3D panels or video as assets become available.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                <p className="text-sm font-medium text-sand-50">
-                  Scientific Explanation
-                </p>
-                <p className="text-sm text-sand-200/80">
-                  {hotspot.scienceNote}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                <p className="text-sm font-medium text-sand-50">Pro-Authenticity</p>
-                <p className="text-sm text-sand-200/80">
-                  {hotspot.proAuthenticity}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                <p className="text-sm font-medium text-sand-50">Skeptical</p>
-                <p className="text-sm text-sand-200/80">
-                  {hotspot.skepticalView}
-                </p>
-              </div>
-              <p className="text-xs text-sand-200/70">
-                {/* Placeholder for actual modal trigger */}
-                TODO: wire these cards to modal or immersive overlays.
-              </p>
-            </CardContent>
-          </Card>
         </div>
 
         <div className="space-y-6">

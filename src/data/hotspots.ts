@@ -67,9 +67,9 @@ export const shroudHotspots: Hotspot[] = [
     label: "Foot Wounds",
     description:
       "Bloodstains on the dorsal image indicate wounds in the feet. These are consistent with at least one nail penetrating the feet during crucifixion, matching archaeological evidence such as the remains of \"Jehohanan\" discovered in 1968 [7].",
-    coords: { x: 25.4, y: 93.9, depth: 0.5 },
+    coords: { x: 75.8, y: 90.9, depth: 0.5 },
     coordsByMode: {
-      uv: { x: 27.8, y: 80.9 },
+      uv: { x: 75.4, y: 84.7 },
     },
     scienceNote:
       "Bloodstains on the dorsal image indicate wounds in the feet. These are consistent with at least one nail penetrating the feet during crucifixion, matching archaeological evidence such as the remains of \"Jehohanan\" discovered in 1968 [7].",
