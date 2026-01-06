@@ -119,42 +119,43 @@ export function ShroudViewer({
               transform: `translate(${offset.x}px, ${offset.y}px)`,
             }}
           >
-            <Image
-              src={mode.placeholder}
-              alt={`${mode.label} visualization`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className={cn(
-                "object-cover transition-transform duration-200 ease-out",
-                overlayClass,
-              )}
+            <div
+              className="relative h-full w-full transition-transform duration-200 ease-out will-change-transform"
               style={{
                 transform: `scale(${zoomValue})`,
                 transformOrigin: "center",
               }}
-              draggable={false}
-              priority={false}
-            />
-            <div className="absolute inset-0">
-              {hotspots.map((hotspot) => (
-                <button
-                  key={hotspot.id}
-                  data-hotspot-target
-                  className={cn(
-                    "absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black/50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber",
-                    hotspot.id === activeHotspot
-                      ? "bg-accent-amber shadow-lg shadow-accent-amber/50"
-                      : "bg-white/70",
-                  )}
-                  style={{
-                    left: `${hotspot.coords.x}%`,
-                    top: `${hotspot.coords.y}%`,
-                  }}
-                  onClick={() => onHotspotSelect(hotspot.id)}
-                >
-                  <span className="sr-only">{hotspot.label}</span>
-                </button>
-              ))}
+            >
+              <Image
+                src={mode.placeholder}
+                alt={`${mode.label} visualization`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={cn("object-cover", overlayClass)}
+                draggable={false}
+                priority={false}
+              />
+              <div className="absolute inset-0">
+                {hotspots.map((hotspot) => (
+                  <button
+                    key={hotspot.id}
+                    data-hotspot-target
+                    className={cn(
+                      "absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black/50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber",
+                      hotspot.id === activeHotspot
+                        ? "bg-accent-amber shadow-lg shadow-accent-amber/50"
+                        : "bg-white/70",
+                    )}
+                    style={{
+                      left: `${hotspot.coords.x}%`,
+                      top: `${hotspot.coords.y}%`,
+                    }}
+                    onClick={() => onHotspotSelect(hotspot.id)}
+                  >
+                    <span className="sr-only">{hotspot.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
