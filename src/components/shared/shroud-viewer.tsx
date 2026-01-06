@@ -23,6 +23,8 @@ type ShroudViewerProps = {
 const clamp = (value: number, min = 1, max = 3) =>
   Math.min(max, Math.max(min, value));
 
+const VIEWER_ASPECT_RATIO = 2370 / 2321;
+
 export function ShroudViewer({
   mode,
   zoom,
@@ -49,7 +51,14 @@ export function ShroudViewer({
     }
   }, [mode.id]);
 
+  const isHotspotTarget = (target: EventTarget | null) =>
+    target instanceof HTMLElement && target.closest("[data-hotspot-target]");
+
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (isHotspotTarget(event.target)) {
+      setIsPanning(false);
+      return;
+    }
     setIsPanning(true);
     pointerOrigin.current = {
       x: event.clientX - offset.x,
@@ -75,23 +84,29 @@ export function ShroudViewer({
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
     event.preventDefault();
     setOffset((prev) => ({
-      x: prev.x - event.deltaX * 0.5,
-      y: prev.y - event.deltaY * 0.5,
+      x: prev.x - event.deltaX,
+      y: prev.y - event.deltaY,
     }));
   };
 
   return (
     <div className="relative overflow-hidden rounded-[32px] border border-sand-200/15 bg-black/60 p-4 shadow-2xl shadow-black/40">
       <div
-        className="relative mx-auto h-[460px] w-full max-w-2xl overflow-hidden rounded-[28px] border border-sand-200/20 bg-black"
-        style={{ perspective: "1000px" }}
+        className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[28px] border border-sand-200/20 bg-black"
+        style={{
+          perspective: "1000px",
+          aspectRatio: VIEWER_ASPECT_RATIO,
+        }}
       >
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sand-700/20 to-black/60"
           aria-hidden
         />
         <div
-          className="absolute inset-0 cursor-grab active:cursor-grabbing"
+          className={cn(
+            "absolute inset-0 cursor-grab",
+            isPanning && "cursor-grabbing",
+          )}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
@@ -101,7 +116,7 @@ export function ShroudViewer({
           <div
             className="relative h-full w-full transition-transform duration-200 ease-out will-change-transform"
             style={{
-              transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoomValue})`,
+              transform: `translate(${offset.x}px, ${offset.y}px)`,
             }}
           >
             <Image
@@ -109,32 +124,41 @@ export function ShroudViewer({
               alt={`${mode.label} visualization`}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className={cn("object-cover", overlayClass)}
+              className={cn(
+                "object-cover transition-transform duration-200 ease-out",
+                overlayClass,
+              )}
+              style={{
+                transform: `scale(${zoomValue})`,
+                transformOrigin: "center",
+              }}
+              draggable={false}
               priority={false}
             />
+            <div className="absolute inset-0">
+              {hotspots.map((hotspot) => (
+                <button
+                  key={hotspot.id}
+                  data-hotspot-target
+                  className={cn(
+                    "absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black/50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber",
+                    hotspot.id === activeHotspot
+                      ? "bg-accent-amber shadow-lg shadow-accent-amber/50"
+                      : "bg-white/70",
+                  )}
+                  style={{
+                    left: `${hotspot.coords.x}%`,
+                    top: `${hotspot.coords.y}%`,
+                  }}
+                  onClick={() => onHotspotSelect(hotspot.id)}
+                >
+                  <span className="sr-only">{hotspot.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
         <div className="pointer-events-none absolute inset-0 border border-sand-50/5" />
-        <div className="absolute inset-0">
-          {hotspots.map((hotspot) => (
-            <button
-              key={hotspot.id}
-              className={cn(
-                "absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-black/50 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber",
-                hotspot.id === activeHotspot
-                  ? "bg-accent-amber shadow-lg shadow-accent-amber/50"
-                  : "bg-white/70",
-              )}
-              style={{
-                left: `${hotspot.coords.x}%`,
-                top: `${hotspot.coords.y}%`,
-              }}
-              onClick={() => onHotspotSelect(hotspot.id)}
-            >
-              <span className="sr-only">{hotspot.label}</span>
-            </button>
-          ))}
-        </div>
       </div>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
         <label className="flex flex-col text-xs uppercase tracking-[0.3em] text-sand-200/70">

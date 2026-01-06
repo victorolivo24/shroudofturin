@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import type { JSX } from "react";
 import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
@@ -56,7 +55,7 @@ const viewingPanels: Record<
       "In 1898, Italian photographer Secondo Pia photographed the Shroud. When he developed the photographic negative, the image appeared as a natural positive — revealing a level of anatomical detail not visible to the naked eye.",
       "This discovery transformed the Shroud from a devotional object into a subject of scientific inquiry.",
     ],
-    imageSrc: "/images/shroud_negative.jpg",
+    imageSrc: "/images/shroud-fullbody-photographic-negative.png",
     imageAlt: "Photographic negative of the Shroud",
   },
   uv: {
@@ -64,7 +63,7 @@ const viewingPanels: Record<
     paragraphs: [
       "Ultraviolet photography reveals serum halos surrounding many bloodstains — a phenomenon consistent with blood separation following trauma. These features are invisible under normal lighting conditions and were not detectable prior to modern forensic techniques.",
     ],
-    imageSrc: "/images/shroud-uv-fluorescence.jpg",
+    imageSrc: "/images/shroud-fullbody-uv.png",
     imageAlt: "UV fluorescence serum halos",
   },
   relief: {
@@ -80,7 +79,7 @@ const viewingPanels: Record<
 
 export function ShroudExplorerSection() {
   const [modeId, setModeId] = useState<ExplorerMode["id"]>("normal");
-  const [zoom, setZoom] = useState(1.15);
+  const [zoom, setZoom] = useState(1);
   const [hotspotId, setHotspotId] = useState<Hotspot["id"]>(
     shroudHotspots[0].id,
   );
@@ -93,107 +92,6 @@ export function ShroudExplorerSection() {
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
-
-  const renderModeImages = (content: string) => {
-    const normalized = content.toLowerCase();
-    const nodes: JSX.Element[] = [];
-    if (
-      normalized.includes("photographic negative") ||
-      normalized.includes("negative image")
-    ) {
-      nodes.push(
-        <img
-          key="negative"
-          src="/images/shroud_negative.jpg"
-          alt="Photographic negative reference"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    if (
-      normalized.includes("ultraviolet") ||
-      normalized.includes("uv fluorescence") ||
-      normalized.includes("serum halo")
-    ) {
-      nodes.push(
-        <img
-          key="uv"
-          src="/images/shroud-uv-fluorescence.jpg"
-          alt="UV fluorescence view"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    if (
-      normalized.includes("linen fibers") ||
-      normalized.includes("microscopy") ||
-      normalized.includes("superficial") ||
-      normalized.includes("linen fibril")
-    ) {
-      nodes.push(
-        <img
-          key="linen"
-          src="/images/shroud-linen-fibers.jpg"
-          alt="Linen fibers micrograph"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    return nodes;
-  };
-
-  const renderHotspotImages = (content: string) => {
-    const normalized = content.toLowerCase();
-    const nodes: JSX.Element[] = [];
-    if (
-      normalized.includes("1532") ||
-      normalized.includes("chambéry") ||
-      normalized.includes("fire damage")
-    ) {
-      nodes.push(
-        <img
-          key="fire"
-          src="/images/shroud-fire-damage.jpg"
-          alt="Shroud fire damage reference"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    if (
-      (normalized.includes("water") && normalized.includes("stain")) ||
-      normalized.includes("water stains")
-    ) {
-      nodes.push(
-        <img
-          key="water"
-          src="/images/shroud-water-stains.jpg"
-          alt="Water stains reference"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    if (
-      normalized.includes("ultraviolet") ||
-      normalized.includes("uv fluorescence") ||
-      normalized.includes("serum halo")
-    ) {
-      nodes.push(
-        <img
-          key="hotspot-uv"
-          src="/images/shroud-uv-fluorescence.jpg"
-          alt="UV fluorescence hotspot reference"
-          loading="lazy"
-          className="mt-4 w-full rounded-3xl border border-sand-200/15 object-cover"
-        />,
-      );
-    }
-    return nodes;
-  };
 
   return (
     <SectionShell id="shroud-explorer">
@@ -237,6 +135,7 @@ export function ShroudExplorerSection() {
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
           />
+          <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
         <div className="space-y-4">
           <h4 className="text-xl font-semibold">Fire Damage and Water Stains (1532)</h4>
@@ -261,20 +160,6 @@ export function ShroudExplorerSection() {
             />
           </div>
         </div>
-        <div className="space-y-4">
-          <h4 className="text-xl font-semibold">Linen Fiber Microscopy</h4>
-          <p className="text-sand-200/80">
-            Microscopic analysis shows that the image resides only on the outermost fibers of
-            the linen threads — affecting less than 0.2 microns of depth. No pigment, dye, or
-            binder has been found within the fibers themselves.
-          </p>
-          <img
-            src="/images/shroud-linen-fibers.jpg"
-            alt="Linen fiber microscopy"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
-        </div>
       </div>
       <div className="grid gap-10 lg:grid-cols-[1.1fr,0.9fr]">
         <div className="space-y-6">
@@ -287,10 +172,6 @@ export function ShroudExplorerSection() {
             activeHotspot={hotspotId}
             onHotspotSelect={setHotspotId}
           />
-          <div className="rounded-3xl border border-sand-200/10 bg-black/40 p-4 text-sm text-sand-200/80">
-            <p>{mode.description}</p>
-            {renderModeImages(mode.description)}
-          </div>
         </div>
 
         <div className="space-y-6">
@@ -317,7 +198,6 @@ export function ShroudExplorerSection() {
             <Badge variant="outline">Hotspot Map</Badge>
             <CardTitle>{hotspot.label}</CardTitle>
             <CardDescription>{hotspot.description}</CardDescription>
-            {renderHotspotImages(hotspot.description)}
           </CardHeader>
           <CardContent className="space-y-6">
             <Tabs
