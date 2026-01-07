@@ -75,18 +75,71 @@ export function BloodSerumLab() {
         <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
           SECTION 3 — BLOOD &amp; SERUM ANALYSIS
         </p>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">UV Serum Halos</h3>
-          <p className="text-sand-200/80">
-            Under ultraviolet light, bloodstains reveal clear serum halos — consistent with
-            post-traumatic blood separation.
-          </p>
-          <img
-            src="/images/shroud-uv-halo-closeup.png"
-            alt="UV serum halo close-up"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
+        <div className="space-y-6">
+          <div className="space-y-3">
+            <h3 className="text-2xl font-semibold">UV Serum Halos</h3>
+            <p className="text-sand-200/80">
+              Under ultraviolet light, bloodstains reveal clear serum halos — consistent with
+              post-traumatic blood separation.
+            </p>
+          </div>
+          <Card className="bg-black/40">
+            <CardHeader>
+              <Badge variant="amber">UV Halo Viewer</Badge>
+              <CardDescription>
+                Adjust the slider to see how trauma-induced bilirubin could shift hue.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div
+                className="relative overflow-hidden rounded-3xl border border-sand-200/15 bg-black"
+                style={{ aspectRatio: 550 / 413 }}
+              >
+                <Image
+                  src="/images/shroud-uv-halo-closeup.png"
+                  alt="UV halo fluorescence"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain"
+                  priority={false}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `radial-gradient(circle, rgba(226,102,102,${
+                      haloIntensity / 120
+                    }), transparent 65%)`,
+                  }}
+                />
+              </div>
+              <label className="flex flex-col text-xs uppercase tracking-[0.3em] text-sand-200/70">
+                Bilirubin Slider
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={haloIntensity}
+                  onChange={(event) => setHaloIntensity(Number(event.target.value))}
+                  className="mt-2 h-1.5 cursor-pointer appearance-none rounded-full bg-sand-900"
+                />
+              </label>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {bilirubinScenarios.map((scenario) => (
+                  <div
+                    key={scenario.id}
+                    className={`rounded-2xl border p-4 text-sm ${
+                      haloIntensity >= scenario.value
+                        ? "border-accent-amber text-sand-50"
+                        : "border-sand-200/10 text-sand-200/70"
+                    }`}
+                  >
+                    <p className="font-semibold">{scenario.label}</p>
+                    <p>{scenario.description}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold">Bilirubin and Trauma</h3>
@@ -131,63 +184,6 @@ export function BloodSerumLab() {
         </div>
       </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-        <Card className="bg-black/40">
-          <CardHeader>
-            <Badge variant="amber">UV Halo Viewer</Badge>
-            <CardDescription>
-              Adjust the slider to see how trauma-induced bilirubin could shift hue.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div
-              className="relative overflow-hidden rounded-3xl border border-sand-200/15 bg-black"
-              style={{ aspectRatio: 550 / 413 }}
-            >
-              <Image
-                src="/images/shroud-uv-halo-closeup.png"
-                alt="UV halo fluorescence"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain"
-                priority={false}
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `radial-gradient(circle, rgba(226,102,102,${
-                    haloIntensity / 120
-                  }), transparent 65%)`,
-                }}
-              />
-            </div>
-            <label className="flex flex-col text-xs uppercase tracking-[0.3em] text-sand-200/70">
-              Bilirubin Slider
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={haloIntensity}
-                onChange={(event) => setHaloIntensity(Number(event.target.value))}
-                className="mt-2 h-1.5 cursor-pointer appearance-none rounded-full bg-sand-900"
-              />
-            </label>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {bilirubinScenarios.map((scenario) => (
-                <div
-                  key={scenario.id}
-                  className={`rounded-2xl border p-4 text-sm ${
-                    haloIntensity >= scenario.value
-                      ? "border-accent-amber text-sand-50"
-                      : "border-sand-200/10 text-sand-200/70"
-                  }`}
-                >
-                  <p className="font-semibold">{scenario.label}</p>
-                  <p>{scenario.description}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
         <Card className="bg-black/50">
           <CardHeader>
             <Badge variant="emerald">Blood Before Image?</Badge>
