@@ -17,7 +17,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
-import { PLACEHOLDER_UV } from "@/data/placeholders";
 import { bilirubinScenarios, bloodLabTabs } from "@/data/labs";
 
 export function BloodSerumLab() {
@@ -140,13 +139,17 @@ export function BloodSerumLab() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="relative h-64 overflow-hidden rounded-3xl border border-sand-200/15">
+            <div
+              className="relative overflow-hidden rounded-3xl border border-sand-200/15 bg-black"
+              style={{ aspectRatio: 550 / 413 }}
+            >
               <Image
-                src={PLACEHOLDER_UV}
-                alt="UV overlay placeholder"
+                src="/images/shroud-uv-halo-closeup.png"
+                alt="UV halo fluorescence"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain"
+                priority={false}
               />
               <div
                 className="absolute inset-0"

@@ -142,17 +142,23 @@ export function CrucifixionForensics() {
               <span>Wrists</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                  <p className="text-sm font-semibold text-sand-50">
-                    {100 - nailRatio}% Hand Depictions
-                  </p>
-                  <p className="text-sm text-sand-200/80">
-                    Some skeptics argue a medieval artist could have reproduced
-                    these details, but the wrist-wound placement contradicts
-                    most medieval iconography, which typically shows nails
-                    through the palms [9][12]. highlight art history references.
-                  </p>
-                </div>
+              <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <p className="text-sm font-semibold text-sand-50">
+                  {100 - nailRatio}% Hand Depictions
+                </p>
+                <p className="text-sm text-sand-200/80">
+                  Some skeptics argue a medieval artist could have reproduced
+                  these details, but the wrist-wound placement contradicts
+                  most medieval iconography, which typically shows nails
+                  through the palms [9][12]. highlight art history references.
+                </p>
+                <img
+                  src="/images/medieval-painting-crucifixtion.jpg"
+                  alt="Medieval crucifixion painting"
+                  loading="lazy"
+                  className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
+                />
+              </div>
               <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
                 <p className="text-sm font-semibold text-sand-50">
                   {nailRatio}% Wrist Evidence
