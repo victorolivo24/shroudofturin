@@ -114,12 +114,4 @@ export const explorerModes: ExplorerMode[] = [
     instructions: "Shows possible serum halos recorded under UV.",
     placeholder: "/images/shroud-fullbody-uv.png",
   },
-  {
-    id: "relief",
-    label: "3D Relief Map",
-    description:
-      "When processed using a NASA VP-8 Image Analyzer in 1976, the Shroud image produced natural three-dimensional topography, something ordinary photographs or paintings do not generate [19].",
-    instructions: "Pseudo-3D height map derived from intensity curves.",
-    placeholder: "/images/shroud-vp8-3d-render.jpg",
-  },
 ];

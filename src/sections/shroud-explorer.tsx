@@ -59,15 +59,6 @@ const viewingPanels: Record<
     imageSrc: "/images/shroud-fullbody-uv.png",
     imageAlt: "UV fluorescence serum halos",
   },
-  relief: {
-    title: "3D Relief Interpretation",
-    paragraphs: [
-      "When processed by a NASA VP-8 image analyzer, the Shroud’s grayscale values translate into a natural 3D relief, indicating that brightness correlates with distance from the cloth.",
-      "Researchers debate whether this relief implies contact with an actual body or a carefully crafted bas-relief, but the effect remains unique among historical images.",
-    ],
-    imageSrc: "/images/shroud-vp8-3d-render.jpg",
-    imageAlt: "VP-8 style 3D relief rendering",
-  },
 };
 
 export function ShroudExplorerSection() {
