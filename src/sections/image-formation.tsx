@@ -65,7 +65,7 @@ export function ImageFormationSection() {
             A faint image exists on the reverse side of the cloth, suggesting an image
             formation process that affected both surfaces. When backing cloths were removed in
             2002, researchers reported an extremely faint image of the face on the reverse
-            side of the linen, a phenomenon called "double superficiality" [20].
+            side of the linen, a phenomenon called &quot;double superficiality&quot; [20].
           </p>
           <img
             src="/images/shroud-reverse-side-face.jpg"

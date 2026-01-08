@@ -35,7 +35,7 @@ export function DatingLab() {
     if (id === "reweave") {
       return (
         <img
-          src="/images/shroud-rogers-cotton-fibers.jpg"
+          src="/images/shroud-rogers-cotton-fibers.webp"
           alt="Rogers cotton fiber evidence"
           loading="lazy"
           className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
@@ -87,7 +87,7 @@ export function DatingLab() {
             suggesting it may not represent the original cloth.
           </p>
           <img
-            src="/images/shroud-rogers-cotton-fibers.jpg"
+            src="/images/shroud-rogers-cotton-fibers.webp"
             alt="Rogers cotton fiber evidence"
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
