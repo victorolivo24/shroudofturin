@@ -86,12 +86,15 @@ export function DatingLab() {
             Chemist Raymond Rogers identified cotton fibers and dye in the sampled area,
             suggesting it may not represent the original cloth.
           </p>
-          <img
-            src="/images/shroud-rogers-cotton-fibers.webp"
-            alt="Rogers cotton fiber evidence"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
+          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-sand-200/15">
+            <iframe
+              src="https://www.youtube.com/embed/zWWYMwwV5TU"
+              title="Rogers textile analysis video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="h-full w-full"
+            />
+          </div>
         </div>
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold">Alternative Spectroscopic Dating</h3>
@@ -99,12 +102,15 @@ export function DatingLab() {
             Studies by Giulio Fanti using infrared and mechanical methods yielded much earlier
             date ranges, though these methods remain contested.
           </p>
-          <img
-            src="/images/fanti-spectroscopy-setup.jpg"
-            alt="Fanti spectroscopy setup"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
+          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-sand-200/15">
+            <iframe
+              src="https://www.youtube.com/embed/IvzqGP9jZBQ?start=67&end=103"
+              title="Giulio Fanti spectroscopic dating"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="h-full w-full"
+            />
+          </div>
         </div>
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold">Timeline Overview</h3>
