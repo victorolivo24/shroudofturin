@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { datingEvidence, pollOptions } from "@/data/labs";
+import { DatingTimeline } from "@/components/visuals/dating-timeline";
 
 export function DatingLab() {
   const [activeId, setActiveId] = useState(datingEvidence[0].id);
@@ -117,24 +118,13 @@ export function DatingLab() {
           <p className="text-sand-200/80">
             A synthesis of historical, scientific, and textual evidence.
           </p>
-          <img
-            src="/images/shroud-dating-timeline.jpg"
-            alt="Shroud dating timeline overview"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
+          <DatingTimeline />
         </div>
       </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
         <Card className="bg-black/40">
           <CardHeader>
             <Badge variant="emerald">Evidence Timeline</Badge>
-            <img
-              src="/images/shroud-dating-timeline.jpg"
-              alt="Dating timeline graphic"
-              loading="lazy"
-              className="mt-2 w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
             <CardTitle>{active.label}</CardTitle>
             {renderActiveImage(active.id)}
             <CardDescription>
