@@ -1,24 +1,42 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useState } from "react";
-import Image from "next/image";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { PLACEHOLDER_SUDARIUM, PLACEHOLDER_SHROUD } from "@/data/placeholders";
-import { sudariumComparisons } from "@/data/labs";
-import { Progress } from "@/components/ui/progress";
+
+const comparisonEntries = [
+  {
+    id: "alignment",
+    title: "Bloodstain Alignment",
+    supportLabel: "Support in literature: Moderate–High",
+    supportValue: 75,
+    pro: "Researchers have compared facial bloodstain patterns on the Sudarium of Oviedo—particularly around the nose, mouth, and beard area—with corresponding regions on the Shroud of Turin. Some argue that similarities in flow direction and relative positioning are difficult to attribute to chance, especially when evaluated using three-dimensional modeling techniques [27].",
+    skeptical:
+      "Critics emphasize that bloodstains are inherently irregular and that visual alignment can be influenced by selective emphasis on matching features. They note that without objective statistical criteria, assessments of “correspondence” remain partly subjective and sensitive to how reference points are chosen.",
+  },
+  {
+    id: "timeline",
+    title: "Provenance Timeline",
+    supportLabel: "Support in literature: Moderate",
+    supportValue: 60,
+    pro: "The Sudarium is a smaller cloth (approximately 84 × 53 cm) with documented presence in Spain by at least the 9th century. Historical tradition traces its movement from Jerusalem through North Africa and into the Iberian Peninsula during periods of upheaval in the early medieval era [26]. Supporters argue that this independent and early provenance strengthens the case that the cloth predates the Shroud’s undisputed appearance in 14th-century France.",
+    skeptical:
+      "Historians caution that much of the early itinerary relies on later traditions rather than continuous contemporary documentation. Gaps in the written record make it difficult to verify whether references consistently describe the same object, or whether later associations were retroactively applied.",
+  },
+  {
+    id: "matching",
+    title: "Matching Features Across Cloths",
+    supportLabel: "Support in literature: Moderate",
+    supportValue: 60,
+    pro: "Advocates point to a convergence of multiple features—such as nasal bleeding, mouth-area stains, and asymmetrical facial flows—that appear compatible when the two cloths are compared. They argue that the cumulative presence of several compatible features is more suggestive than any single match considered in isolation [27].",
+    skeptical:
+      "Skeptics respond that emphasizing a subset of compatible features risks confirmation bias. They note that many potential non-matching or ambiguous areas receive less attention, and that without predefined criteria for inclusion, the overall significance of the observed similarities remains open to debate [28].",
+  },
+];
 
 export function SudariumComparison() {
-  const [overlay, setOverlay] = useState(50);
 
   return (
     <SectionShell id="sudarium">
@@ -51,7 +69,7 @@ export function SudariumComparison() {
             Patterns correspond to facial blood flows consistent with the Shroud image.
           </p>
           <img
-            src="/images/sudarium-blood-closeup.jpg"
+            src="/images/sudarium-blood-closeup.jpeg"
             alt="Sudarium blood close-up"
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
@@ -76,7 +94,7 @@ export function SudariumComparison() {
             Historical records trace the Sudarium’s journey from Jerusalem to Spain.
           </p>
           <img
-            src="/images/sudarium-provenance-map.jpg"
+            src="/images/suarium-provenance-map.jpg"
             alt="Sudarium provenance map"
             loading="lazy"
             className="w-full rounded-2xl border border-sand-200/15 object-cover"
@@ -84,102 +102,42 @@ export function SudariumComparison() {
         </div>
       </div>
       <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-        <Card className="bg-black/40">
-          <CardHeader>
-            <Badge variant="amber">Overlay Viewer</Badge>
-            <CardDescription>
-              Slide to align bloodstain features. Placeholder images will be replaced with
-              high-res assets later.
-            </CardDescription>
-            <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-              Sudarium bloodstain overlay comparison
-            </p>
-            <img
-              src="/images/sudarium-shroud-overlay.jpg"
-              alt="Sudarium overlay comparison"
-              loading="lazy"
-              className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-            <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-              Sudarium bloodstain detail
-            </p>
-            <img
-              src="/images/sudarium-blood-closeup.jpg"
-              alt="Sudarium bloodstain close-up"
-              loading="lazy"
-              className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="relative h-64 overflow-hidden rounded-3xl border border-sand-200/15">
-              <Image
-                src={PLACEHOLDER_SHROUD}
-                alt="Shroud face placeholder"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-              <div
-                className="absolute inset-0 transition-opacity"
-                style={{ opacity: overlay / 100 }}
-              >
-                <Image
-                  src={PLACEHOLDER_SUDARIUM}
-                  alt="Sudarium overlay placeholder"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="mix-blend-screen object-cover"
-                />
-              </div>
-            </div>
-            <label className="flex flex-col text-xs uppercase tracking-[0.4em] text-sand-200/60">
-              Alignment Slider
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={overlay}
-                onChange={(event) => setOverlay(Number(event.target.value))}
-                className="mt-2 h-1.5 cursor-pointer appearance-none rounded-full bg-sand-900"
-              />
-            </label>
-            <div className="rounded-3xl border border-sand-200/10 bg-sand-900/40 p-4 text-sm text-sand-200/80">
-              Critics caution that pattern matching is subjective and does not
-              conclusively prove a common origin [28]. Provide balanced
-              commentary on provenance timeline and matching/mismatching features.
-            </div>
-          </CardContent>
-        </Card>
         <Card className="bg-black/50">
           <CardHeader>
-            <Badge variant="emerald">Comparison Metrics</Badge>
-            <CardTitle>Strength of match</CardTitle>
+            <Badge variant="emerald">Correspondence Review</Badge>
+            <CardTitle>Comparing claims and counterpoints</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {sudariumComparisons.map((item) => (
+          <CardContent className="space-y-5">
+            {comparisonEntries.map((entry) => (
               <div
-                key={item.id}
-                className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4"
+                key={entry.id}
+                className="space-y-3 rounded-2xl border border-sand-200/10 bg-sand-900/40 p-5"
               >
-                <div className="flex items-center justify-between">
-                  <p className="text-lg font-semibold text-sand-50">
-                    {item.title}
+                <div>
+                  <p className="text-lg font-semibold text-sand-50">{entry.title}</p>
+                  <p className="text-xs uppercase tracking-[0.25em] text-sand-200/60">
+                    {entry.supportLabel}
                   </p>
-                  <span className="text-sm text-sand-200/70">{item.match}%</span>
                 </div>
-                <Progress value={item.match} accent="emerald" className="mt-3" />
-                <div className="mt-3 grid gap-3 text-sm text-sand-200/80 md:grid-cols-2">
+                <div className="h-2 rounded-full bg-sand-200/10">
+                  <span
+                    className="block h-full rounded-full bg-emerald-400/60"
+                    style={{ width: `${entry.supportValue}%` }}
+                    aria-label={`${entry.title} support level`}
+                  />
+                </div>
+                <div className="grid gap-4 text-sm text-sand-200/85 md:grid-cols-2">
                   <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-                      Pro Interpretation
+                      Pro interpretation
                     </p>
-                    <p>{item.pro}</p>
+                    <p>{entry.pro}</p>
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-                      Skeptical Interpretation
+                      Skeptical interpretation
                     </p>
-                    <p>{item.skeptical}</p>
+                    <p>{entry.skeptical}</p>
                   </div>
                 </div>
               </div>
