@@ -25,75 +25,93 @@ export function BloodSerumLab() {
           Researchers first focus on what is directly visible on the cloth.
         </p>
         <h3 className="text-lg font-semibold text-sand-100">Observed Blood Flow</h3>
-        <img
-          src="/images/shroud-blood-side-closeup.png"
-          alt="Blood flow on the side"
-          loading="lazy"
-          className="w-full max-w-[560px] rounded-2xl border border-sand-200/15 object-cover"
-        />
-        <p className="text-sand-200/80">
-          Distinct bloodstains are visible on the face, arms, and side of the body image. The
-          direction and shape of these flows suggest movement influenced by gravity rather than
-          random smearing.
-        </p>
-        <p className="text-sand-200/80">
-          On the arms, blood appears to run downward along the forearms, consistent with extended
-          limbs held at an angle. A prominent flow on the side of the torso shows a mixture of darker
-          and lighter components, suggesting separation during bleeding rather than later application.
-        </p>
-        <p className="text-sand-200/80">
-          Researchers note that these patterns resemble blood behavior observed on a suspended body,
-          though interpretation depends on assumptions about posture, timing, and cloth contact. As a
-          result, the stains are studied as physical observations first, before broader conclusions
-          are drawn.
-        </p>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+          <div>
+            <img
+              src="/images/shroud-blood-side-closeup.png"
+              alt="Blood flow on the side"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+          </div>
+          <div className="space-y-4 text-sand-200/80">
+            <p>
+              Distinct bloodstains are visible on the face, arms, and side of the body image. The
+              direction and shape of these flows suggest movement influenced by gravity rather than
+              random smearing.
+            </p>
+            <p>
+              On the arms, blood appears to run downward along the forearms, consistent with extended
+              limbs held at an angle. A prominent flow on the side of the torso shows a mixture of darker
+              and lighter components, suggesting separation during bleeding rather than later application.
+            </p>
+            <p>
+              Researchers note that these patterns resemble blood behavior observed on a suspended body,
+              though interpretation depends on assumptions about posture, timing, and cloth contact. As a
+              result, the stains are studied as physical observations first, before broader conclusions
+              are drawn.
+            </p>
+          </div>
+        </div>
         <h3 className="text-lg font-semibold text-sand-100">Ultraviolet Fluorescence</h3>
-        <img
-          src="/images/shroud-uv-halo-closeup.png"
-          alt="Ultraviolet fluorescence serum halos"
-          loading="lazy"
-          className="w-full max-w-[560px] rounded-2xl border border-sand-200/15 object-contain"
-        />
-        <p className="text-sand-200/80">
-          When photographed under ultraviolet illumination, areas surrounding several bloodstains
-          fluoresce more strongly than the surrounding cloth. These regions are not visible under
-          normal lighting conditions.
-        </p>
-        <p className="text-sand-200/80">
-          Researchers refer to these features as “serum halos,” reflecting the separation of blood
-          components as the liquid portion of blood spread slightly beyond the denser red cells while
-          drying. Similar effects are documented in modern forensic contexts when blood contacts porous
-          materials.
-        </p>
-        <p className="text-sand-200/80">
-          Supporters argue that the presence and distribution of these halos are consistent with
-          natural blood transfer and drying on linen. Skeptics note that fluorescence alone does not
-          establish timing or cause, and that chemical aging, environmental exposure, or later handling
-          could influence how materials respond under ultraviolet light.
-        </p>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+          <div>
+            <img
+              src="/images/shroud-uv-halo-closeup.png"
+              alt="Ultraviolet fluorescence serum halos"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-contain"
+            />
+          </div>
+          <div className="space-y-4 text-sand-200/80">
+            <p>
+              When photographed under ultraviolet illumination, areas surrounding several bloodstains
+              fluoresce more strongly than the surrounding cloth. These regions are not visible under
+              normal lighting conditions.
+            </p>
+            <p>
+              Researchers refer to these features as “serum halos,” reflecting the separation of blood
+              components as the liquid portion of blood spread slightly beyond the denser red cells while
+              drying. Similar effects are documented in modern forensic contexts when blood contacts porous
+              materials.
+            </p>
+            <p>
+              Supporters argue that the presence and distribution of these halos are consistent with
+              natural blood transfer and drying on linen. Skeptics note that fluorescence alone does not
+              establish timing or cause, and that chemical aging, environmental exposure, or later handling
+              could influence how materials respond under ultraviolet light.
+            </p>
+          </div>
+        </div>
         <p className="mt-6 text-sm italic text-sand-200/60">
           To understand why these visual features are discussed, some background in blood chemistry is necessary.
         </p>
         <h3 className="text-lg font-semibold text-sand-100">Bilirubin and Blood Color</h3>
-        <img
-          src="/images/bilirubin-trauma-comparison.png"
-          alt="Bilirubin trauma comparison"
-          loading="lazy"
-          className="w-full max-w-[560px] rounded-2xl border border-sand-200/15 object-contain"
-        />
-        <p className="text-sand-200/80">
-          Chemical analyses identified unusually high levels of bilirubin, a breakdown product of
-          hemoglobin that increases in cases of severe physical trauma. Elevated bilirubin can keep
-          blood looking redder than expected as it ages.
-        </p>
-        <p className="text-sand-200/80">
-          Researchers suggest extreme stress, injury, and shock prior to death could account for this
-          profile, potentially explaining why some stains appear relatively red.
-        </p>
-        <p className="text-sand-200/80">
-          Skeptics caution that bilirubin levels in ancient samples are difficult to interpret and may
-          be affected by environment, aging, and linen chemistry.
-        </p>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+          <div>
+            <img
+              src="/images/bilirubin-trauma-comparison.png"
+              alt="Bilirubin trauma comparison"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-contain"
+            />
+          </div>
+          <div className="space-y-4 text-sand-200/80">
+            <p>
+              Chemical analyses identified unusually high levels of bilirubin, a breakdown product of
+              hemoglobin that increases in cases of severe physical trauma. Elevated bilirubin can keep
+              blood looking redder than expected as it ages.
+            </p>
+            <p>
+              Researchers suggest extreme stress, injury, and shock prior to death could account for this
+              profile, potentially explaining why some stains appear relatively red.
+            </p>
+            <p>
+              Skeptics caution that bilirubin levels in ancient samples are difficult to interpret and may
+              be affected by environment, aging, and linen chemistry.
+            </p>
+          </div>
+        </div>
         <p className="mt-6 text-sm italic text-sand-200/60">
           At this point, interpretation begins to diverge.
         </p>
