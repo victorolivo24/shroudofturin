@@ -86,7 +86,7 @@ export function ShroudExplorerSection() {
         description="Step into an interactive, impartial gallery that allows you to examine the Shroud under different imaging conditions. Use the viewing modes to explore how the image behaves under normal lighting, photographic inversion, and ultraviolet imaging."
         badgeVariant="amber"
       />
-      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+      <div className="mb-6 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <div>
           <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
             Viewing Modes
@@ -163,6 +163,19 @@ export function ShroudExplorerSection() {
             />
           </div>
         </div>
+      </div>
+      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+        <p>
+          The image does not appear to be painted, printed, or dyed, yet it exhibits anatomical
+          coherence, depth-related behavior, and forensic detail that researchers continue to debate.
+        </p>
+        <p className="mt-3 text-lg font-medium text-sand-50/90">
+          This raises a natural question:{" "}
+          <span className="font-semibold text-sand-50">
+            are the injuries visible on the cloth consistent with what is known about Roman
+            crucifixion practices?
+          </span>
+        </p>
       </div>
       <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
         <div className="space-y-6">
