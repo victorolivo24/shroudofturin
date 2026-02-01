@@ -109,11 +109,7 @@ export function ShroudExplorerSection() {
             SECTION 1 — EXPLORE
           </p>
           <h3 className="text-2xl font-semibold">{activePanel.title}</h3>
-          {activePanel.paragraphs.map((paragraph, index) => (
-            <p key={index} className="text-sand-200/80">
-              {paragraph}
-            </p>
-          ))}
+          <p className="text-sand-200/80">{activePanel.paragraphs.join(" ")}</p>
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:grid-cols-[minmax(0,1fr)_minmax(300px,360px)]">
             <ShroudViewer
               key={mode.id}
@@ -128,7 +124,6 @@ export function ShroudExplorerSection() {
               <CardHeader>
                 <Badge variant="outline">Hotspot Key</Badge>
                 <CardTitle>{hotspot.label}</CardTitle>
-                <CardDescription>{hotspot.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="rounded-2xl border border-sand-200/15 bg-sand-900/40 p-4 text-sm text-sand-50">
@@ -149,7 +144,6 @@ export function ShroudExplorerSection() {
               </CardContent>
             </Card>
           </div>
-          <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
         <div className="space-y-4">
           <h4 className="text-xl font-semibold">Condition &amp; Preservation</h4>
