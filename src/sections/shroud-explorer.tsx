@@ -105,9 +105,6 @@ export function ShroudExplorerSection() {
           </ToggleGroup>
         </div>
         <div className="space-y-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-            SECTION 1 — EXPLORE
-          </p>
           <h3 className="text-2xl font-semibold">{activePanel.title}</h3>
           <p className="text-sand-200/80">{activePanel.paragraphs.join(" ")}</p>
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:grid-cols-[minmax(0,1fr)_minmax(300px,360px)]">

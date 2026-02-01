@@ -11,7 +11,7 @@ import { SourcesLibrary } from "@/sections/sources-library";
 
 export default function Home() {
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-1 pb-20">
       <LandingHero />
       <ShroudExplorerSection />
       <CrucifixionForensics />

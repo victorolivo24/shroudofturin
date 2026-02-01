@@ -211,7 +211,7 @@ export function ShroudViewer({
             step={0.01}
             value={zoomValue}
             onChange={(event) => onZoomChange(parseFloat(event.target.value))}
-            className="mt-2 h-1 cursor-pointer appearance-none rounded-full bg-sand-900"
+            className="mt-2 h-1 cursor-pointer appearance-none rounded-full bg-sand-200/50 accent-amber-400"
           />
         </label>
         <p className="text-sm text-sand-200/80">{mode.instructions}</p>
