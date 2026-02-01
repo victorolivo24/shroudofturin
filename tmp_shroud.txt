@@ -1,0 +1,77 @@
+1:"use client";
+4:import { useState, type MouseEvent } from "react";
+5:import { SectionShell } from "@/components/layout/header";
+6:import { SectionHeader } from "@/components/shared/section-header";
+7:import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+8:import { Button } from "@/components/ui/button";
+15:} from "@/components/ui/card";
+21:} from "@/data/hotspots";
+22:import { ShroudViewer } from "@/components/shared/shroud-viewer";
+23:import { Badge } from "@/components/ui/badge";
+24:import { sourceLibrary } from "@/data/sources";
+27:  ExplorerMode["id"],
+36:    title: "The Shroud of Turin",
+38:      "The Shroud of Turin is a linen cloth measuring approximately 4.4 × 1.1 meters, bearing the faint front-and-back image of a crucified man. Preserved in the Cathedral of Saint John the Baptist in Turin, Italy, it has been the subject of scientific, historical, and theological investigation for over a century.",
+39:      "The image is not painted, printed, or dyed, yet it displays anatomical precision, three-dimensional information, and forensic detail unmatched by known artistic techniques.",
+41:    imageSrc: "/images/shroud_full_body.jpg",
+42:    imageAlt: "Full Shroud of Turin",
+45:    title: "The Photographic Negative",
+47:      "In 1898, Italian photographer Secondo Pia photographed the Shroud. When he developed the photographic negative, the image appeared as a natural positive — revealing a level of anatomical detail not visible to the naked eye.",
+48:      "This discovery transformed the Shroud from a devotional object into a subject of scientific inquiry.",
+50:    imageSrc: "/images/shroud-fullbody-photographic-negative.png",
+51:    imageAlt: "Photographic negative of the Shroud",
+54:    title: "Ultraviolet Fluorescence & Serum Halos",
+56:      "Ultraviolet photography reveals serum halos surrounding many bloodstains — a phenomenon consistent with blood separation following trauma. These features are invisible under normal lighting conditions and were not detectable prior to modern forensic techniques.",
+58:    imageSrc: "/images/shroud-fullbody-uv.png",
+59:    imageAlt: "UV fluorescence serum halos",
+64:  const [modeId, setModeId] = useState<ExplorerMode["id"]>("normal");
+66:  const [hotspotId, setHotspotId] = useState<Hotspot["id"]>(
+83:    <SectionShell id="shroud-explorer">
+85:        eyebrow="Flagship Experience"
+86:        title="Shroud Explorer"
+87:        description="Step into an impartial, interactive gallery that surfaces the major evidence sets, counterpoints, and open questions."
+88:        badgeVariant="amber"
+90:      <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
+92:          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+96:            type="single"
+98:            onValueChange={(value) => value && setModeId(value as ExplorerMode["id"])}
+99:            className="mt-4 flex flex-wrap gap-3"
+108:        <div className="space-y-4">
+109:          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+112:          <h3 className="text-2xl font-semibold">{activePanel.title}</h3>
+114:            <p key={index} className="text-sand-200/80">
+121:            loading="lazy"
+122:            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+124:              modeId === "uv" || modeId === "negative"
+129:              modeId === "uv" || modeId === "negative"
+130:                ? { cursor: "crosshair" }
+134:          <p className="text-sm text-sand-200/70">{mode.description}</p>
+136:        <div className="space-y-4">
+137:          <h4 className="text-xl font-semibold">Fire Damage and Water Stains (1532)</h4>
+138:          <p className="text-sand-200/80">
+144:          <div className="grid gap-4 md:grid-cols-2">
+146:              src="/images/shroud-fire-damage.jpg"
+147:              alt="Fire damage on the Shroud"
+148:              loading="lazy"
+149:              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+152:              src="/images/shroud-water-stains.jpg"
+153:              alt="Water stains on the Shroud"
+154:              loading="lazy"
+155:              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+160:      <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
+161:        <div className="space-y-8">
+162:          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:grid-cols-[minmax(0,1fr)_minmax(300px,360px)]">
+172:            <Card className="bg-black/40">
+174:                <Badge variant="outline">Hotspot Key</Badge>
+178:              <CardContent className="space-y-6">
+179:                <div className="rounded-2xl border border-sand-200/15 bg-sand-900/40 p-4 text-sm text-sand-50">
+182:                <div className="flex flex-wrap gap-3">
+186:                      variant={item.id === hotspotId ? "default" : "outline"}
+187:                      size="sm"
+194:                <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
+195:                  <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+198:                  <ul className="mt-3 space-y-2 text-sm text-sand-200/80">
+200:                      <li key={source} className="flex items-center gap-2">
+201:                        <span className="h-1.5 w-1.5 rounded-full bg-accent-amber" />
+212:        <div className="space-y-6">
+215:              <Badge variant="emerald" className="mb-2">

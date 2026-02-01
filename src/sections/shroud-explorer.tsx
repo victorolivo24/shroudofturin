@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -13,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MuseumScene } from "@/components/three/MuseumScene";
 import {
   shroudHotspots,
   explorerModes,
@@ -73,13 +72,6 @@ export function ShroudExplorerSection() {
   const activeSource = sourceLibrary[0];
   const SourceComponent = activeSource.Component;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
-  const handleCoordinateClick = (event: MouseEvent<HTMLImageElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    alert(`x: ${x.toFixed(1)}%, y: ${y.toFixed(1)}%`);
-  };
-
   return (
     <SectionShell id="shroud-explorer">
       <SectionHeader
@@ -116,50 +108,6 @@ export function ShroudExplorerSection() {
               {paragraph}
             </p>
           ))}
-          <img
-            src={activePanel.imageSrc}
-            alt={activePanel.imageAlt}
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            onClick={
-              modeId === "uv" || modeId === "negative"
-                ? handleCoordinateClick
-                : undefined
-            }
-            style={
-              modeId === "uv" || modeId === "negative"
-                ? { cursor: "crosshair" }
-                : undefined
-            }
-          />
-          <p className="text-sm text-sand-200/70">{mode.description}</p>
-        </div>
-        <div className="space-y-4">
-          <h4 className="text-xl font-semibold">Fire Damage and Water Stains (1532)</h4>
-          <p className="text-sand-200/80">
-            In 1532, a fire damaged the Shroud while it was stored in Chambéry, France.
-            Molten silver burned through folded layers of cloth, creating symmetrical burn
-            marks. Water used to extinguish the fire caused additional staining. Despite this,
-            the body image remained intact.
-          </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            <img
-              src="/images/shroud-fire-damage.jpg"
-              alt="Fire damage on the Shroud"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-            <img
-              src="/images/shroud-water-stains.jpg"
-              alt="Water stains on the Shroud"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
-        <div className="space-y-8">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:grid-cols-[minmax(0,1fr)_minmax(300px,360px)]">
             <ShroudViewer
               key={mode.id}
@@ -208,10 +156,34 @@ export function ShroudExplorerSection() {
               </CardContent>
             </Card>
           </div>
+          <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
-
+        <div className="space-y-4">
+          <h4 className="text-xl font-semibold">Fire Damage and Water Stains (1532)</h4>
+          <p className="text-sand-200/80">
+            In 1532, a fire damaged the Shroud while it was stored in Chambéry, France.
+            Molten silver burned through folded layers of cloth, creating symmetrical burn
+            marks. Water used to extinguish the fire caused additional staining. Despite this,
+            the body image remained intact.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <img
+              src="/images/shroud-fire-damage.jpg"
+              alt="Fire damage on the Shroud"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+            <img
+              src="/images/shroud-water-stains.jpg"
+              alt="Water stains on the Shroud"
+              loading="lazy"
+              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
         <div className="space-y-6">
-          <MuseumScene />
           <Card>
             <CardHeader>
               <Badge variant="emerald" className="mb-2">
