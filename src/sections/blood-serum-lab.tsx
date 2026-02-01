@@ -2,27 +2,21 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import Image from "next/image";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { bilirubinScenarios } from "@/data/labs";
 
 export function BloodSerumLab() {
-  const [haloIntensity, setHaloIntensity] = useState(40);
+  const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
+    null,
+  );
+  const uvMode: "normal" | "uv" = "uv";
 
   return (
     <SectionShell id="blood-lab">
       <SectionHeader
-        eyebrow="Blood & Serum Lab"
-        title="UV halos, bilirubin, and sequencing the blood vs image debate."
-        description="Use the controls to visualize UV fluorescence, tweak bilirubin estimates, and study chemistry notes."
+        eyebrow="Blood Lab"
+        title="Blood & Chemistry"
+        description="Bloodstains, ultraviolet imaging, and chemical observations—and how they are interpreted."
         badgeVariant="emerald"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
@@ -31,155 +25,182 @@ export function BloodSerumLab() {
         </p>
         <div className="space-y-6">
           <div className="space-y-3">
-            <h3 className="text-2xl font-semibold">UV Serum Halos</h3>
+            <h3 className="text-2xl font-semibold">Blood Flow Patterns</h3>
+            <button
+              type="button"
+              onClick={() =>
+                setLightbox({
+                  src: "/images/shroud-blood-side-closeup.png",
+                  alt: "Blood flow on the side",
+                })
+              }
+              className="mx-auto block w-full max-w-[520px] cursor-zoom-in"
+            >
+              <img
+                src="/images/shroud-blood-side-closeup.png"
+                alt="Blood flow on the side"
+                loading="lazy"
+                className="w-full rounded-2xl border border-sand-200/15 object-cover"
+              />
+            </button>
             <p className="text-sand-200/80">
-              Under ultraviolet light, bloodstains reveal clear serum halos — consistent with
-              post-traumatic blood separation.
+              Distinct bloodstains are visible on the face, arms, and side of the body image. The
+              direction and shape of these flows suggest movement influenced by gravity rather than
+              random smearing.
+            </p>
+            <p className="text-sand-200/80">
+              On the arms, blood appears to run downward along the forearms, consistent with extended
+              limbs held at an angle. A prominent flow on the side of the torso shows a mixture of
+              darker and lighter components, suggesting separation during bleeding rather than later
+              application.
+            </p>
+            <p className="text-sand-200/80">
+              Researchers note that these patterns resemble blood behavior observed on a suspended
+              body, though interpretation depends on assumptions about posture, timing, and cloth
+              contact. As a result, the stains are studied as physical observations first, before
+              broader conclusions are drawn.
             </p>
           </div>
-          <Card className="bg-black/40">
-            <CardHeader>
-              <Badge variant="amber">UV Halo Viewer</Badge>
-              <CardDescription>
-                Adjust the slider to see how trauma-induced bilirubin could shift hue.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div
-                className="relative overflow-hidden rounded-3xl border border-sand-200/15 bg-black"
-                style={{ aspectRatio: 550 / 413 }}
+          <div className="space-y-3">
+            <h3 className="text-2xl font-semibold">Ultraviolet Fluorescence (Serum Halos)</h3>
+            <div className="mx-auto w-full max-w-[520px]">
+              <button
+                type="button"
+                onClick={() =>
+                  setLightbox({
+                    src: "/images/shroud-uv-halo-closeup.png",
+                    alt: "Ultraviolet fluorescence serum halos",
+                  })
+                }
+                className="block w-full cursor-zoom-in"
               >
-                <Image
-                  src="/images/shroud-uv-halo-closeup.png"
-                  alt="UV halo fluorescence"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain"
-                  priority={false}
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `radial-gradient(circle, rgba(226,102,102,${
-                      haloIntensity / 120
-                    }), transparent 65%)`,
-                  }}
-                />
-              </div>
-              <label className="flex flex-col gap-1 text-xs uppercase tracking-[0.3em] text-sand-200/70">
-                Trauma Severity (Conceptual)
-                <input
-                  type="range"
-                  min={0}
-                  max={100}
-                  value={haloIntensity}
-                  onChange={(event) => setHaloIntensity(Number(event.target.value))}
-                  className="mt-2 h-1.5 cursor-pointer appearance-none rounded-full bg-sand-900"
-                />
-                <span className="text-[0.65rem] normal-case tracking-normal text-sand-200/60">
-                  Illustrative visualization — not a direct measurement
-                </span>
-              </label>
-              <div className="grid gap-3 sm:grid-cols-3">
-                {bilirubinScenarios.map((scenario) => (
-                  <div
-                    key={scenario.id}
-                    className={`rounded-2xl border p-4 text-sm ${
-                      haloIntensity >= scenario.value
-                        ? "border-accent-amber text-sand-50"
-                        : "border-sand-200/10 text-sand-200/70"
-                    }`}
-                  >
-                    <p className="font-semibold">{scenario.label}</p>
-                    <p>{scenario.description}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-sand-200/70">
-                This visualization illustrates how severe trauma can increase bilirubin presence
-                in blood, potentially affecting color and fluorescence under ultraviolet imaging.
-              </p>
-            </CardContent>
-          </Card>
+                <div className="relative overflow-hidden rounded-3xl border border-sand-200/15 bg-black">
+                  <img
+                    src="/images/shroud-uv-halo-closeup.png"
+                    alt="Ultraviolet fluorescence serum halos"
+                    loading="lazy"
+                    className="w-full object-contain transition"
+                    style={{
+                      filter:
+                        uvMode === "normal"
+                          ? "saturate(0.88) contrast(0.96) brightness(0.98)"
+                          : "none",
+                    }}
+                  />
+                </div>
+              </button>
+            </div>
+            <p className="text-sand-200/80">
+              When photographed under ultraviolet illumination, areas surrounding several bloodstains
+              fluoresce more strongly than the surrounding cloth. These regions are not visible under
+              normal lighting conditions.
+            </p>
+            <p className="text-sand-200/80">
+              Researchers refer to these features as “serum halos,” reflecting the separation of blood
+              components as the liquid portion of blood spread slightly beyond the denser red cells while
+              drying. Similar effects are documented in modern forensic contexts when blood contacts porous
+              materials.
+            </p>
+            <p className="text-sand-200/80">
+              Supporters argue that the presence and distribution of these halos are consistent with
+              natural blood transfer and drying on linen. Skeptics note that fluorescence alone does not
+              establish timing or cause, and that chemical aging, environmental exposure, or later handling
+              could influence how materials respond under ultraviolet light.
+            </p>
+          </div>
         </div>
         <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Bilirubin and Trauma</h3>
-          <p className="text-sand-200/80">
-            Chemical analysis detected elevated bilirubin levels, a byproduct of severe
-            trauma. This may explain why the blood appears reddish rather than dark brown
-            despite age.
-          </p>
-          <div
-            className="mx-auto w-full rounded-2xl border border-sand-200/15 bg-black"
-            style={{ maxWidth: "550px" }}
+          <h3 className="text-2xl font-semibold">
+            Blood Chemistry and Coloration (Bilirubin)
+          </h3>
+          <button
+            type="button"
+            onClick={() =>
+              setLightbox({
+                src: "/images/bilirubin-trauma-comparison.png",
+                alt: "Bilirubin trauma comparison",
+              })
+            }
+            className="mx-auto block w-full max-w-[550px] cursor-zoom-in"
           >
-            <img
-              src="/images/bilirubin-trauma-comparison.png"
-              alt="Bilirubin trauma comparison"
-              loading="lazy"
-              className="w-full rounded-2xl object-contain"
-            />
-          </div>
-        </div>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Blood Flow Patterns</h3>
+            <div className="rounded-2xl border border-sand-200/15 bg-black">
+              <img
+                src="/images/bilirubin-trauma-comparison.png"
+                alt="Bilirubin trauma comparison"
+                loading="lazy"
+                className="w-full rounded-2xl object-contain"
+              />
+            </div>
+          </button>
           <p className="text-sand-200/80">
-            Distinct blood flows appear on the face, arms, and side, consistent with
-            gravity-driven movement in a crucified position.
+            Chemical analyses of the bloodstains identified unusually high levels of bilirubin, a
+            breakdown product of hemoglobin that increases in cases of severe physical trauma. In
+            living tissue, elevated bilirubin can affect the color of blood, making it appear redder
+            than expected as it ages.
           </p>
-          <div className="grid gap-4 md:grid-cols-3">
+          <p className="text-sand-200/80">
+            Researchers have suggested that extreme stress, injury, and shock prior to death could
+            account for this chemical profile. This explanation has been proposed to help clarify why
+            some bloodstains on the cloth appear relatively red rather than dark brown, despite their
+            age.
+          </p>
+          <p className="text-sand-200/80">
+            Skeptics caution that bilirubin levels can be difficult to interpret in ancient samples
+            and that environmental factors, aging, and chemical interactions with linen may also
+            influence coloration. As a result, bilirubin is treated as a contextual observation rather
+            than a definitive indicator.
+          </p>
+        </div>
+        
+      </div>
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-sand-200/20 bg-black"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="absolute right-3 top-3 rounded-full border border-sand-200/30 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.2em] text-sand-50"
+              onClick={() => setLightbox(null)}
+            >
+              Close
+            </button>
             <img
-              src="/images/shroud-blood-side-closeup.png"
-              alt="Blood flow on the side"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="max-h-[90vh] w-auto max-w-[90vw] object-contain"
             />
           </div>
         </div>
-      </div>
-      <div className="space-y-6 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-200/80">
-        <div>
-          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-            Blood Precedes Image Formation
-          </p>
-          <p className="mt-3">
-            Microscopic analysis indicates that the body image does not extend beneath the
-            bloodstains. This suggests the blood was transferred to the cloth first, with the
-            image forming afterward by an unknown mechanism.
-          </p>
-          <p className="mt-3">
-            Supporters argue this sequencing is inconsistent with painting or contact-based
-            image formation, since pigments would be expected to overlay bloodstains. Skeptics
-            counter that non-artistic chemical or physical processes could still account for
-            this ordering without invoking extraordinary explanations. The precise mechanism
-            remains unresolved.
-          </p>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-            Blood Chemistry and Optical Evidence
-          </p>
-          <p className="mt-3">
-            Chemical tests by Heller and Adler detected unusually high levels of bilirubin, a
-            hemoglobin breakdown product associated with severe trauma. This may explain why the
-            blood appears reddish rather than dark brown despite age [14].
-          </p>
-          <p className="mt-3">
-            Ultraviolet photographs taken during the 1978 STURP investigation revealed fluorescent
-            “serum halos” surrounding many bloodstains, indicating natural separation of blood
-            components as they dried [10][13].
-          </p>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-            Ongoing Forensic Debate
-          </p>
-          <p className="mt-3">
-            A 2018 forensic bloodstain pattern study suggested that some flows might not align
-            with natural bleeding on a vertical crucified body, though these interpretations remain
-            debated [16].
-          </p>
-        </div>
+      )}
+      <div className="rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-200/80">
+        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
+          Blood Precedes Image Formation
+        </p>
+        <p className="mt-3">
+          Microscopic examination suggests that the body image does not extend beneath many of the
+          bloodstains. Instead, the blood appears to sit on top of the image-free linen fibers,
+          indicating that the blood was transferred to the cloth before the body image formed.
+        </p>
+        <p className="mt-3">
+          Supporters of this interpretation argue that this sequencing is difficult to reconcile
+          with painting or contact-based image formation, since pigments or dyes would be expected
+          to overlap or obscure existing bloodstains. They view the apparent separation as evidence
+          that the image formed through a process that did not disturb the dried blood.
+        </p>
+        <p className="mt-3">
+          Skeptics respond that the observed layering does not require an extraordinary explanation.
+          They note that non-artistic chemical or physical processes—such as selective oxidation,
+          dehydration, or diffusion effects—could produce similar visual results without implying a
+          specific image-forming mechanism. The precise cause of the image, and its relationship to
+          the bloodstains, remains unresolved.
+        </p>
       </div>
     </SectionShell>
   );
