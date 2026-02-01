@@ -170,6 +170,15 @@ export function CrucifixionForensics() {
           </div>
         </div>
       </div>
+      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+        <p>
+          The physical injuries provide one layer of context, but they are only part of the picture.
+        </p>
+        <p className="mt-3 text-lg font-medium text-sand-50/90">
+          The next step is to look more closely at the bloodstains and chemical traces—and to ask what
+          they may, or may not, indicate.
+        </p>
+      </div>
 
       {lightbox && (
         <div
