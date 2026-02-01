@@ -24,6 +24,12 @@ type ShroudViewerProps = {
 const clamp = (value: number, min = 1, max = 3) =>
   Math.min(max, Math.max(min, value));
 
+const clampAxisForZoom = (value: number, dimension: number, zoomLevel: number) => {
+  if (zoomLevel <= 1 || dimension <= 0) return 0;
+  const maxOffset = ((zoomLevel - 1) * dimension) / 2;
+  return Math.max(-maxOffset, Math.min(maxOffset, value));
+};
+
 const VIEWER_ASPECT_RATIO = 2370 / 2321;
 
 export function ShroudViewer({
@@ -67,17 +73,26 @@ export function ShroudViewer({
     return () => observer.disconnect();
   }, []);
 
-  const clampAxis = (value: number, dimension: number) => {
-    if (zoomValue <= 1 || dimension <= 0) return 0;
-    const maxOffset = ((zoomValue - 1) * dimension) / 2;
-    return Math.max(-maxOffset, Math.min(maxOffset, value));
-  };
+  const clampAxis = (value: number, dimension: number) =>
+    clampAxisForZoom(value, dimension, zoomValue);
 
   const applyOffset = (x: number, y: number) => {
     setOffset({
       x: clampAxis(x, dimensions.width),
       y: clampAxis(y, dimensions.height),
     });
+  };
+
+  const focusOnHotspot = (coords: { x: number; y: number }) => {
+    const targetZoom = 2.2;
+    onZoomChange(targetZoom);
+    const dx = (coords.x / 100 - 0.5) * dimensions.width;
+    const dy = (coords.y / 100 - 0.5) * dimensions.height;
+    setOffset({
+      x: clampAxisForZoom(-dx * targetZoom, dimensions.width, targetZoom),
+      y: clampAxisForZoom(-dy * targetZoom, dimensions.height, targetZoom),
+    });
+    setIsPanning(false);
   };
 
   const isHotspotTarget = (target: EventTarget | null) =>
@@ -190,6 +205,11 @@ export function ShroudViewer({
                         top: `${coords.y}%`,
                       }}
                       onClick={() => onHotspotSelect(hotspot.id)}
+                      onDoubleClick={(event) => {
+                        event.preventDefault();
+                        onHotspotSelect(hotspot.id);
+                        focusOnHotspot(coords);
+                      }}
                     >
                       <span className="sr-only">{hotspot.label}</span>
                     </button>
@@ -213,6 +233,9 @@ export function ShroudViewer({
             onChange={(event) => onZoomChange(parseFloat(event.target.value))}
             className="mt-2 h-1 cursor-pointer appearance-none rounded-full bg-sand-200/50 accent-amber-400"
           />
+          <span className="mt-2 text-[0.65rem] normal-case tracking-normal text-sand-200/70">
+            Tip: double-click a hotspot to zoom to it.
+          </span>
         </label>
         <p className="text-sm text-sand-200/80">{mode.instructions}</p>
       </div>
