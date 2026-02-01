@@ -129,18 +129,6 @@ export function BloodSerumLab() {
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             <img
-              src="/images/shroud-blood-face-closeup.png"
-              alt="Blood flow on the face"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-            <img
-              src="/images/shroud-blood-arm-closeup.png"
-              alt="Blood flow on the arm"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-            <img
               src="/images/shroud-blood-side-closeup.png"
               alt="Blood flow on the side"
               loading="lazy"

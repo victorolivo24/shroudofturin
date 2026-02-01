@@ -140,19 +140,6 @@ export function ShroudExplorerSection() {
                     </Button>
                   ))}
                 </div>
-                <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-                  <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-                    Sources to Cross-Check
-                  </p>
-                  <ul className="mt-3 space-y-2 text-sm text-sand-200/80">
-                    {hotspot.sources.map((source) => (
-                      <li key={source} className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent-amber" />
-                        {source}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </CardContent>
             </Card>
           </div>
