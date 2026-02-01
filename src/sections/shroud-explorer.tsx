@@ -33,27 +33,33 @@ const viewingPanels: Record<
   }
 > = {
   normal: {
-    title: "The Shroud of Turin",
+    title: "Normal View",
     paragraphs: [
-      "The Shroud of Turin is a linen cloth measuring approximately 4.4 × 1.1 meters, bearing the faint front-and-back image of a crucified man. Preserved in the Cathedral of Saint John the Baptist in Turin, Italy, it has been the subject of scientific, historical, and theological investigation for over a century.",
-      "The image is not painted, printed, or dyed, yet it displays anatomical precision, three-dimensional information, and forensic detail unmatched by known artistic techniques.",
+      "This view shows the Shroud under ordinary lighting conditions.",
+      "The body image is extremely faint, with no clear outlines or visible brushstrokes. In contrast, bloodstains appear darker and more defined.",
+
     ],
     imageSrc: "/images/shroud_full_body.jpg",
     imageAlt: "Full Shroud of Turin",
   },
   negative: {
-    title: "The Photographic Negative",
+    title: "Photographic Negative",
     paragraphs: [
-      "In 1898, Italian photographer Secondo Pia photographed the Shroud. When he developed the photographic negative, the image appeared as a natural positive — revealing a level of anatomical detail not visible to the naked eye.",
-      "This discovery transformed the Shroud from a devotional object into a subject of scientific inquiry.",
+      "In 1898, the Shroud was photographed, revealing that its photographic negative produces a lifelike positive image.",
+      "Details such as facial structure and body proportions appear clearer in the negative than in normal view.",
+      "This unexpected behavior shifted the Shroud from a devotional object into a subject of scientific investigation.",
+     
     ],
     imageSrc: "/images/shroud-fullbody-photographic-negative.png",
     imageAlt: "Photographic negative of the Shroud",
   },
   uv: {
-    title: "Ultraviolet Fluorescence & Serum Halos",
+    title: "Ultraviolet Fluorescence",
     paragraphs: [
-      "Ultraviolet photography reveals serum halos surrounding many bloodstains — a phenomenon consistent with blood separation following trauma. These features are invisible under normal lighting conditions and were not detectable prior to modern forensic techniques.",
+      "Ultraviolet imaging reveals features not visible under normal lighting conditions.",
+      "Some areas surrounding bloodstains fluoresce under UV light, suggesting differences in material composition or residue.",
+      "This imaging technique was not available prior to modern forensic analysis.",
+
     ],
     imageSrc: "/images/shroud-fullbody-uv.png",
     imageAlt: "UV fluorescence serum halos",
@@ -75,9 +81,9 @@ export function ShroudExplorerSection() {
   return (
     <SectionShell id="shroud-explorer">
       <SectionHeader
-        eyebrow="Flagship Experience"
-        title="Shroud Explorer"
-        description="Step into an impartial, interactive gallery that surfaces the major evidence sets, counterpoints, and open questions."
+        eyebrow="Explore"
+        title="The Shroud"
+        description="Step into an interactive, impartial gallery that allows you to examine the Shroud under different imaging conditions. Use the viewing modes to explore how the image behaves under normal lighting, photographic inversion, and ultraviolet imaging."
         badgeVariant="amber"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
@@ -100,7 +106,7 @@ export function ShroudExplorerSection() {
         </div>
         <div className="space-y-4">
           <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-            SECTION 1 — SHROUD EXPLORER
+            SECTION 1 — EXPLORE
           </p>
           <h3 className="text-2xl font-semibold">{activePanel.title}</h3>
           {activePanel.paragraphs.map((paragraph, index) => (
@@ -146,12 +152,10 @@ export function ShroudExplorerSection() {
           <p className="text-sm text-sand-200/70">{mode.description}</p>
         </div>
         <div className="space-y-4">
-          <h4 className="text-xl font-semibold">Fire Damage and Water Stains (1532)</h4>
+          <h4 className="text-xl font-semibold">Condition &amp; Preservation</h4>
           <p className="text-sand-200/80">
-            In 1532, a fire damaged the Shroud while it was stored in Chambéry, France.
-            Molten silver burned through folded layers of cloth, creating symmetrical burn
-            marks. Water used to extinguish the fire caused additional staining. Despite this,
-            the body image remained intact.
+            The Shroud has undergone damage and repair over centuries of history.
+            Burn marks and water stains visible today result from a fire in the 16th century, during which the cloth was damaged and later repaired. These features are part of the Shroud’s documented physical history and remain visible across imaging methods.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             <img
