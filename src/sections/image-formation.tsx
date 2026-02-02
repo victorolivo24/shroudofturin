@@ -23,6 +23,45 @@ export function ImageFormationSection() {
         title="How the Image Is Evaluated"
         description="Comparing proposed image-formation explanations against observed physical properties of the cloth."
       />
+      <div className="mb-6 space-y-4 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-200/80">
+        <p className="text-xs uppercase tracking-[0.35em] text-sand-200/60">
+          Proposed Image-Formation Models
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <p className="text-sm font-semibold text-sand-50">Pigment / Paint</p>
+            <p className="text-sm">
+              The image was created using pigments, dyes, or paints applied to the cloth by human
+              hands, similar to artistic techniques.
+            </p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-sand-50">Contact / Bas-Relief</p>
+            <p className="text-sm">
+              The image formed through physical contact between the cloth and a three-dimensional
+              object or body, possibly using pressure or a low-relief model.
+            </p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-sand-50">Chemical Surface Reaction</p>
+            <p className="text-sm">
+              The image resulted from chemical interactions between the linen and external
+              substances (such as gases, heat, or decomposition products) affecting the cloth’s
+              surface fibers.
+            </p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-sand-50">
+              Non-Contact Energy-Based Proposals
+            </p>
+            <p className="text-sm">
+              The image formed through a brief, non-contact process involving energy or radiation
+              that altered the cloth in a distance-dependent way without physical touch. Such a
+              flash of energy could suggest a ressurection.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="mb-6 text-sand-200/80">
         The table below summarizes how different proposed image-formation explanations are commonly
         discussed in relation to observed properties of the image. The indicators are qualitative
