@@ -366,11 +366,6 @@ export function ImageFormationSection() {
               </tr>
             </tbody>
           </table>
-          <p className="text-sand-200/80">
-            Each proposed explanation accounts for some observed properties of the image, but none
-            accounts for all of them simultaneously. This mismatch between observation and
-            explanation is why the question of image formation remains open.
-          </p>
         </div>
         <aside className="sticky top-20 h-fit rounded-2xl border border-sand-200/10 bg-sand-900/30 p-4 text-xs text-sand-200/80">
           <p className="text-sm font-semibold text-sand-50">How to read this table</p>
@@ -381,6 +376,12 @@ export function ImageFormationSection() {
           </ul>
           <p className="mt-3 text-sand-200/70">Click any cell to read a short explanation.</p>
         </aside>
+      </div>
+      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+        <p>
+          While no single explanation fully accounts for every observed property of the image, the
+          discussion naturally turns to another question: how old is the cloth itself?
+        </p>
       </div>
       <style jsx>{`
         .image-formation-table details {
