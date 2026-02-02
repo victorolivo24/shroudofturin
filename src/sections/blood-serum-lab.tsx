@@ -1,10 +1,14 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
+import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
 
 export function BloodSerumLab() {
+  const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
+    null,
+  );
   return (
     <SectionShell id="blood-lab">
       <SectionHeader
@@ -27,12 +31,23 @@ export function BloodSerumLab() {
         <h3 className="text-lg font-semibold text-sand-100">Observed Blood Flow</h3>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <img
-              src="/images/shroud-blood-side-closeup.png"
-              alt="Blood flow on the side"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
+        <button
+          type="button"
+          onClick={() =>
+            setLightbox({
+              src: "/images/shroud-blood-side-closeup.png",
+              alt: "Blood flow on the side",
+            })
+          }
+          className="block w-full cursor-zoom-in"
+        >
+          <img
+            src="/images/shroud-blood-side-closeup.png"
+            alt="Blood flow on the side"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-cover"
+          />
+        </button>
           </div>
           <div className="space-y-4 text-sand-200/80">
             <p>
@@ -56,12 +71,23 @@ export function BloodSerumLab() {
         <h3 className="text-lg font-semibold text-sand-100">Ultraviolet Fluorescence</h3>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <img
-              src="/images/shroud-uv-halo-closeup.png"
-              alt="Ultraviolet fluorescence serum halos"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-contain"
-            />
+        <button
+          type="button"
+          onClick={() =>
+            setLightbox({
+              src: "/images/shroud-uv-halo-closeup.png",
+              alt: "Ultraviolet fluorescence serum halos",
+            })
+          }
+          className="block w-full cursor-zoom-in"
+        >
+          <img
+            src="/images/shroud-uv-halo-closeup.png"
+            alt="Ultraviolet fluorescence serum halos"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-contain"
+          />
+        </button>
           </div>
           <div className="space-y-4 text-sand-200/80">
             <p>
@@ -89,12 +115,23 @@ export function BloodSerumLab() {
         <h3 className="text-lg font-semibold text-sand-100">Bilirubin and Blood Color</h3>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
           <div>
-            <img
-              src="/images/bilirubin-trauma-comparison.png"
-              alt="Bilirubin trauma comparison"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-contain"
-            />
+        <button
+          type="button"
+          onClick={() =>
+            setLightbox({
+              src: "/images/bilirubin-trauma-comparison.png",
+              alt: "Bilirubin trauma comparison",
+            })
+          }
+          className="block w-full cursor-zoom-in"
+        >
+          <img
+            src="/images/bilirubin-trauma-comparison.png"
+            alt="Bilirubin trauma comparison"
+            loading="lazy"
+            className="w-full rounded-2xl border border-sand-200/15 object-contain"
+          />
+        </button>
           </div>
           <div className="space-y-4 text-sand-200/80">
             <p>
@@ -130,6 +167,42 @@ export function BloodSerumLab() {
           as selective oxidation, dehydration, or diffusion effects—could produce similar results
           without implying a specific image-forming mechanism. The precise cause of the image, and its
           relationship to the bloodstains, remains unresolved.
+        </p>
+      </div>
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-sand-200/20 bg-black"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="absolute right-3 top-3 rounded-full border border-sand-200/30 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.2em] text-sand-50"
+              onClick={() => setLightbox(null)}
+            >
+              Close
+            </button>
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="max-h-[90vh] w-auto max-w-[90vw] object-contain"
+            />
+          </div>
+        </div>
+      )}
+      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+        <p>
+          The bloodstains and chemical observations raise important questions, but they do not explain
+          how the body image itself formed on the cloth.
+        </p>
+        <p className="mt-3 text-lg font-medium text-sand-50/90">
+          The next section examines the physical properties of the image and the competing explanations
+          proposed to account for its appearance.
         </p>
       </div>
     </SectionShell>
