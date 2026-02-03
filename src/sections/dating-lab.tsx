@@ -4,157 +4,156 @@
 import { useState } from "react";
 import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { datingEvidence } from "@/data/labs";
-import { DatingTimeline } from "@/components/visuals/dating-timeline";
+
+const cards = {
+  radiocarbon: {
+    title: "Radiocarbon Dating (1988)",
+    date: "1260–1390 CE",
+    precision: "High",
+    body: [
+      "In 1988, a small sample from one corner of the cloth was independently dated by laboratories in Oxford, Zürich, and Tucson. All three reported a medieval date range of 1260–1390 CE.",
+      "Supporters emphasize the agreement between labs and the reliability of radiocarbon dating under controlled conditions. Critics note that only one region was sampled and argue that textile repair, contamination, or material heterogeneity could affect the result.",
+    ],
+  },
+  historical: {
+    title: "Historical Documentation",
+    date: "c.1350 CE–present (secure)",
+    precision: "Moderate",
+    body: [
+      "Written records and provenance references place the Shroud securely in medieval Europe beginning in the mid-14th century. Earlier references have been proposed but remain debated among historians.",
+      "Supporters argue that consistent documentation after 1350 CE establishes a reliable historical baseline. Skeptics caution that gaps before this period limit how far back the record can be extended.",
+    ],
+  },
+  material: {
+    title: "Material-Based Estimates",
+    date: "c.100 BCE–300 CE",
+    precision: "Low",
+    body: [
+      "Some researchers have proposed age estimates based on spectroscopic, mechanical, and chemical analyses of linen aging. These approaches aim to infer age from material properties rather than radioactive decay.",
+      "Critics note that such methods lack standardized calibration for ancient linen and currently produce broad estimates rather than precise dates.",
+    ],
+  },
+};
+
+type CardKey = keyof typeof cards;
 
 export function DatingLab() {
-  const [activeId, setActiveId] = useState(datingEvidence[0].id);
-  const active = datingEvidence.find((item) => item.id === activeId)!;
-
-  const renderActiveImage = (id: string) => {
-    if (id === "radiocarbon") {
-      return (
-        <img
-          src="/images/shroud-c14-sample-1988.jpg"
-          alt="1988 radiocarbon sample reference"
-          loading="lazy"
-          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
-        />
-      );
-    }
-    if (id === "reweave") {
-      return (
-        <img
-          src="/images/shroud-rogers-cotton-fibers.webp"
-          alt="Rogers cotton fiber evidence"
-          loading="lazy"
-          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
-        />
-      );
-    }
-    if (id === "fanti") {
-      return (
-        <img
-          src="/images/fanti-spectroscopy-setup.jpg"
-          alt="Fanti spectroscopy setup"
-          loading="lazy"
-          className="mt-3 w-full rounded-2xl border border-sand-200/15 object-cover"
-        />
-      );
-    }
-    return null;
-  };
+  const [activeKey, setActiveKey] = useState<CardKey>("radiocarbon");
+  const active = cards[activeKey];
 
   return (
     <SectionShell id="dating-lab">
       <SectionHeader
         eyebrow="Dating Lab"
-        title="Cross-compare radiocarbon, reweave, and alternative testing."
-        description="Review the 1988 test, textile repair theories, and Fanti's mechanical/spectroscopic work."
+        title="Dating the Cloth"
+        description="How different scientific and historical methods attempt to determine when the linen originated — and where their limits lie."
         badgeVariant="amber"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
           SECTION 5 — DATING THE SHROUD
         </p>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Radiocarbon Dating (1988)</h3>
-          <p className="text-sand-200/80">
-            Radiocarbon tests dated a corner sample of the cloth to 1260–1390 CE. The test has
-            been widely debated due to concerns over sampling location and textile repair.
-          </p>
-          <img
-            src="/images/shroud-c14-sample-1988.jpg"
-            alt="Radiocarbon sample from 1988"
-            loading="lazy"
-            className="w-full rounded-2xl border border-sand-200/15 object-cover"
-          />
-        </div>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Rogers’ Textile Analysis</h3>
-          <p className="text-sand-200/80">
-            Chemist Raymond Rogers identified cotton fibers and dye in the sampled area,
-            suggesting it may not represent the original cloth.
-          </p>
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-sand-200/15">
-            <iframe
-              src="https://www.youtube.com/embed/zWWYMwwV5TU"
-              title="Rogers textile analysis video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="h-full w-full"
-            />
+        <p className="text-sand-200/80">
+          Researchers use several independent methods to estimate the Shroud’s age. Each approach
+          measures something different and carries different limits.
+        </p>
+        <p className="text-sm text-sand-200/70 mb-12">
+          Click each dot to reveal the method summary below.
+        </p>
+
+        <div className="mx-auto w-full max-w-[900px] space-y-6">
+          <div className="space-y-3">
+            <div className="relative h-px bg-sand-200/40">
+              <div className="absolute -top-4 left-[26%] h-9 w-px bg-sand-200/40">
+                <span className="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-sand-200/20 bg-sand-900/80 px-2 py-0.5 text-[10px] text-sand-100/80">
+                  c. 30 CE — Crucifixion of Jesus
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveKey("material")}
+                className="group absolute -top-2 left-[27.5%] h-4 w-4 rounded-full border border-sand-200/50 bg-transparent"
+                title={"Material-based estimates\nBroad indicators consistent with the crucifixion era\nLow precision"}
+                aria-label="Material-based estimates. Broad indicators consistent with the crucifixion era. Low precision."
+              />
+              <button
+                type="button"
+                onClick={() => setActiveKey("radiocarbon")}
+                className="group absolute -top-2 left-[70%] h-4 w-4 rounded-full bg-sand-50"
+                title={"Radiocarbon dating (1988)\nPlaces sample in the medieval period\nHigh precision, limited sampling"}
+                aria-label="Radiocarbon dating (1988). Places sample in the medieval period. High precision, limited sampling."
+              />
+              <button
+                type="button"
+                onClick={() => setActiveKey("historical")}
+                className="group absolute -top-2 left-[72%] h-4 w-4 rounded-full border border-sand-50 bg-sand-200/90"
+                title={"Secure historical documentation\nMid-14th century onward\nModerate precision"}
+                aria-label="Secure historical documentation. Mid-14th century onward. Moderate precision."
+              />
+            </div>
+            <div className="flex justify-between text-xs text-sand-200/70">
+              <span>100 BCE</span>
+              <span>0</span>
+              <span>1000 CE</span>
+              <span>1400 CE</span>
+              <span>2000 CE</span>
+            </div>
           </div>
-        </div>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Alternative Spectroscopic Dating</h3>
-          <p className="text-sand-200/80">
-            Studies by Giulio Fanti using infrared and mechanical methods yielded much earlier
-            date ranges, though these methods remain contested.
-          </p>
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-sand-200/15">
-            <iframe
-              src="https://www.youtube.com/embed/IvzqGP9jZBQ?start=67&end=103"
-              title="Giulio Fanti spectroscopic dating"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          </div>
-        </div>
-        <div className="space-y-3">
-          <h3 className="text-2xl font-semibold">Timeline Overview</h3>
-          <p className="text-sand-200/80">
-            A synthesis of historical, scientific, and textual evidence.
-          </p>
-          <DatingTimeline />
-        </div>
-      </div>
-      <div className="grid gap-8 lg:grid-cols-[1.1fr]">
-        <Card className="bg-black/40">
-          <CardHeader>
-            <Badge variant="emerald">Evidence Timeline</Badge>
-            <CardTitle>{active.label}</CardTitle>
-            {renderActiveImage(active.id)}
-            <CardDescription>
-              Year marker: <strong>{active.value}</strong>
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-wrap gap-3">
-              {datingEvidence.map((item) => (
-                <Button
-                  key={item.id}
-                  variant={item.id === activeId ? "default" : "outline"}
-                  onClick={() => setActiveId(item.id)}
-                >
-                  {item.label}
-                </Button>
+
+          <div className="rounded-2xl border border-sand-200/10 bg-sand-900/20 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h3 className="text-lg font-semibold text-sand-100">{active.title}</h3>
+              <span className="text-sm text-sand-200/70">{active.date}</span>
+            </div>
+            <div className="mt-2 text-xs uppercase tracking-[0.2em] text-sand-200/60">
+              Precision: {active.precision}
+            </div>
+            <div className="mt-4 space-y-3 text-sand-200/80">
+              {active.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-                Supporting Argument
-              </p>
-              <p className="text-sand-50">{active.pro}</p>
-            </div>
-            <div className="rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
-              <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
-                Skeptical Argument
-              </p>
-              <p className="text-sand-50">{active.skeptical}</p>
-            </div>
-          </CardContent>
-        </Card>
+
+            {activeKey === "radiocarbon" && (
+              <details className="mt-4 rounded-xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <summary className="cursor-pointer text-sm font-semibold text-sand-50">
+                  Learn more
+                </summary>
+                <div className="mt-3 space-y-3 text-sand-200/80">
+                  <p>
+                    The 1988 tests were performed by laboratories in Oxford, Zürich, and Tucson.
+                    The sampling location, repair hypotheses, and contamination risks remain central
+                    to ongoing discussion.
+                  </p>
+                  <div className="aspect-video w-full overflow-hidden rounded-xl border border-sand-200/15">
+                    <iframe
+                      src="https://www.youtube.com/embed/zWWYMwwV5TU"
+                      title="Radiocarbon dating and sampling questions"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="h-full w-full"
+                    />
+                  </div>
+                  <img
+                    src="/images/shroud-c14-sample-1988.jpg"
+                    alt="1988 radiocarbon sample reference"
+                    loading="lazy"
+                    className="w-full rounded-2xl border border-sand-200/15 object-cover"
+                  />
+                  <p>
+                    Some textile specialists argue that the sampled corner may not represent the
+                    full cloth, raising questions about repairs and material heterogeneity.
+                  </p>
+                </div>
+              </details>
+            )}
+          </div>
+
+          <p className="text-xs text-sand-200/60">
+            Solid dots indicate narrower or better-defined claims. Hollow dots indicate broader,
+            low-precision estimates.
+          </p>
+        </div>
       </div>
     </SectionShell>
   );
