@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ComponentType } from "react";
 import SkepticalCritique from "@/data/mdx/sources/skeptical-critique.mdx";
 
 export type SourceEntry = {
@@ -6,7 +6,7 @@ export type SourceEntry = {
   title: string;
   category: "scientific" | "historical" | "skeptical" | "pro";
   summary: string;
-  Component: () => ReactElement;
+  Component: ComponentType;
 };
 
 export const sourceLibrary: SourceEntry[] = [
