@@ -24,8 +24,8 @@ export function SudariumComparison() {
           interpretation rather than direct measurement.
         </p>
 
-        <div className="space-y-6">
-          <div className="space-y-3">
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="space-y-3 rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
             <h3 className="text-2xl font-semibold">What Is the Sudarium?</h3>
             <p className="text-sand-200/80">
               The Sudarium of Oviedo is a cloth measuring approximately 84 × 53 cm. It contains
@@ -44,7 +44,7 @@ export function SudariumComparison() {
             />
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
             <h3 className="text-2xl font-semibold">Bloodstain Concentration</h3>
             <p className="text-sand-200/80">
               The Sudarium does not show a body image, but its stains are often discussed in
@@ -62,7 +62,7 @@ export function SudariumComparison() {
             />
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 rounded-2xl border border-sand-200/10 bg-sand-900/40 p-4">
             <h3 className="text-2xl font-semibold">Visual Correspondence Comparison</h3>
             <img
               src="/images/sudarium-shroud-overlay.jpg"
