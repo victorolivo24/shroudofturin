@@ -29,7 +29,7 @@ const ExhibitPanel = ({
 
 export function MuseumScene() {
   const panels = useMemo(
-    () => [
+    (): { position: [number, number, number]; label: string; caption: string }[] => [
       {
         position: [-1.6, 0.5, 0],
         label: "Spectral Lab",
