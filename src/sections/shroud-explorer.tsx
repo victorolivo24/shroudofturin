@@ -68,6 +68,9 @@ const viewingPanels: Record<
 
 export function ShroudExplorerSection() {
   const [modeId, setModeId] = useState<ExplorerMode["id"]>("normal");
+  const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
+    null,
+  );
   const [zoom, setZoom] = useState(1);
   const [hotspotId, setHotspotId] = useState<Hotspot["id"]>(
     shroudHotspots[0].id,
@@ -149,18 +152,40 @@ export function ShroudExplorerSection() {
             Burn marks and water stains visible today result from a fire in the 16th century, during which the cloth was damaged and later repaired. These features are part of the Shroud’s documented physical history and remain visible across imaging methods.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
-            <img
-              src="/images/shroud-fire-damage.jpg"
-              alt="Fire damage on the Shroud"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
-            <img
-              src="/images/shroud-water-stains.jpg"
-              alt="Water stains on the Shroud"
-              loading="lazy"
-              className="w-full rounded-2xl border border-sand-200/15 object-cover"
-            />
+            <button
+              type="button"
+              onClick={() =>
+                setLightbox({
+                  src: "/images/shroud-fire-damage.jpg",
+                  alt: "Fire damage on the Shroud",
+                })
+              }
+              className="block w-full cursor-zoom-in"
+            >
+              <img
+                src="/images/shroud-fire-damage.jpg"
+                alt="Fire damage on the Shroud"
+                loading="lazy"
+                className="w-full rounded-2xl border border-sand-200/15 object-cover"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                setLightbox({
+                  src: "/images/shroud-water-stains.jpg",
+                  alt: "Water stains on the Shroud",
+                })
+              }
+              className="block w-full cursor-zoom-in"
+            >
+              <img
+                src="/images/shroud-water-stains.jpg"
+                alt="Water stains on the Shroud"
+                loading="lazy"
+                className="w-full rounded-2xl border border-sand-200/15 object-cover"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -194,6 +219,32 @@ export function ShroudExplorerSection() {
           </Card>
         </div>
       </div>
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-sand-200/20 bg-black"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="absolute right-3 top-3 rounded-full border border-sand-200/30 bg-black/70 px-3 py-1 text-xs uppercase tracking-[0.2em] text-sand-50"
+              onClick={() => setLightbox(null)}
+            >
+              Close
+            </button>
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="max-h-[90vh] w-auto max-w-[90vw] object-contain"
+            />
+          </div>
+        </div>
+      )}
     </SectionShell>
   );
 }

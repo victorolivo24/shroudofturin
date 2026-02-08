@@ -73,7 +73,7 @@ export function FaithLens() {
           scientific questions open.
         </p>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2">
           {[
             {
               id: "official",
@@ -104,14 +104,22 @@ export function FaithLens() {
               key={item.id}
               type="button"
               onClick={() => setActive(item.id as typeof active)}
-              className={`rounded-2xl border p-4 text-left transition ${
-                active === item.id
-                  ? "border-emerald-300/50 bg-emerald-500/10 text-sand-50"
-                  : "border-sand-200/10 bg-sand-900/40 text-sand-200/80"
+              className={`w-full border-b border-sand-200/15 pb-3 text-left transition hover:border-sand-200/40 ${
+                active === item.id ? "text-sand-50" : "text-sand-200/80"
               }`}
             >
-              <p className="text-base font-semibold">{item.title}</p>
-              <p className="mt-1 text-sm text-sand-200/70">{item.preview}</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-lg font-semibold">{item.title}</p>
+                <span
+                  className={`text-xl ${
+                    active === item.id ? "text-emerald-300" : "text-sand-200/50"
+                  }`}
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              </div>
+              <p className="mt-2 text-sm text-sand-200/70">{item.preview}</p>
             </button>
           ))}
         </div>

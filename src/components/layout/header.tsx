@@ -7,7 +7,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-sand-200/10 bg-black/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="#home" className="text-lg font-semibold tracking-[0.2em]">
+        <Link href="/#home" className="text-lg font-semibold tracking-[0.2em]">
           TURIN ATLAS
         </Link>
         <nav className="hidden items-center gap-4 text-sm md:flex">
@@ -23,10 +23,10 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
-            <Link href="#sources-library">Source Library</Link>
+            <Link href="/sources">Source Library</Link>
           </Button>
           <Button asChild size="sm">
-            <Link href="#shroud-explorer">Enter Explorer</Link>
+            <Link href="/#shroud-explorer">Enter Explorer</Link>
           </Button>
         </div>
       </div>

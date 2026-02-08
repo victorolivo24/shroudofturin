@@ -6,7 +6,6 @@ import { ImageFormationSection } from "@/sections/image-formation";
 import { DatingLab } from "@/sections/dating-lab";
 import { SudariumComparison } from "@/sections/sudarium-comparison";
 import { FaithLens } from "@/sections/faith-lens";
-import { SourcesLibrary } from "@/sections/sources-library";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <DatingLab />
       <SudariumComparison />
       <FaithLens />
-      <SourcesLibrary />
     </div>
   );
 }
