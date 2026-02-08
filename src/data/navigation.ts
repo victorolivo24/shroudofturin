@@ -4,13 +4,12 @@ export type NavItem = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: "/#home" },
-  { label: "Shroud Explorer", href: "/#shroud-explorer" },
-  { label: "Crucifixion Forensics", href: "/#crucifixion-forensics" },
-  { label: "Blood & Serum Lab", href: "/#blood-lab" },
+  { label: "Explorer", href: "/#shroud-explorer" },
+  { label: "Forensics", href: "/#crucifixion-forensics" },
+  { label: "Blood", href: "/#blood-lab" },
   { label: "Image Formation", href: "/#image-formation" },
-  { label: "Dating Lab", href: "/#dating-lab" },
-  { label: "Sudarium Comparison", href: "/#sudarium" },
-  { label: "Faith Lens", href: "/#faith-lens" },
+  { label: "Dating", href: "/#dating-lab" },
+  { label: "Sudarium", href: "/#sudarium" },
+  { label: "Faith", href: "/#faith-lens" },
   { label: "Sources", href: "/sources" },
 ];
