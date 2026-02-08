@@ -51,6 +51,7 @@ export function FaithLens() {
       <SectionHeader
         eyebrow="Faith Lens"
         title="What the Catholic Church says about the Shroud."
+        description="An interpretive, optional perspective on how the Church frames the Shroud."
         badgeVariant="emerald"
       />
       <div className="mt-6 space-y-6 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
