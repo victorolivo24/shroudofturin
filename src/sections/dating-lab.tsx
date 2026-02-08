@@ -72,7 +72,7 @@ export function DatingLab() {
               <button
                 type="button"
                 onClick={() => setActiveKey("material")}
-                className="group absolute -top-2 left-[27.5%] h-4 w-4 rounded-full border border-sand-200/50 bg-transparent"
+                className="group absolute -top-2 left-[27.5%] h-4 w-4 rounded-full bg-sand-50"
                 title={"Material-based estimates\nBroad indicators consistent with the crucifixion era\nLow precision"}
                 aria-label="Material-based estimates. Broad indicators consistent with the crucifixion era. Low precision."
               />
@@ -86,7 +86,7 @@ export function DatingLab() {
               <button
                 type="button"
                 onClick={() => setActiveKey("historical")}
-                className="group absolute -top-2 left-[72%] h-4 w-4 rounded-full border border-sand-50 bg-sand-200/90"
+                className="group absolute -top-2 left-[72%] h-4 w-4 rounded-full bg-sand-50"
                 title={"Secure historical documentation\nMid-14th century onward\nModerate precision"}
                 aria-label="Secure historical documentation. Mid-14th century onward. Moderate precision."
               />
@@ -147,13 +147,48 @@ export function DatingLab() {
                 </div>
               </details>
             )}
+            {activeKey === "material" && (
+              <details className="mt-4 rounded-xl border border-sand-200/10 bg-sand-900/40 p-4">
+                <summary className="cursor-pointer text-sm font-semibold text-sand-50">
+                  Learn more
+                </summary>
+                <div className="mt-3 space-y-3 text-sand-200/80">
+                  <p>
+                    Alternative dating proposals include spectroscopic, mechanical, and chemical
+                    analyses of linen aging. These methods attempt to estimate age based on
+                    material properties rather than radioactive decay.
+                  </p>
+                  <div className="aspect-video w-full overflow-hidden rounded-xl border border-sand-200/15">
+                    <iframe
+                      src="https://www.youtube.com/embed/IvzqGP9jZBQ?start=67&end=103"
+                      title="Material-based dating discussion"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="h-full w-full"
+                    />
+                  </div>
+                  <img
+                    src="/images/fanti-spectroscopy-setup.jpg"
+                    alt="Fanti spectroscopy setup"
+                    loading="lazy"
+                    className="w-full rounded-2xl border border-sand-200/15 object-cover"
+                  />
+                </div>
+              </details>
+            )}
           </div>
 
-          <p className="text-xs text-sand-200/60">
-            Solid dots indicate narrower or better-defined claims. Hollow dots indicate broader,
-            low-precision estimates.
-          </p>
         </div>
+      </div>
+      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+        <p>
+          Dating methods help frame when the cloth may originate, but they do not address whether
+          its features correspond to a specific historical event or burial context.
+        </p>
+        <p className="mt-3 text-lg font-medium text-sand-50/90">
+          That question leads to a related line of inquiry: whether another ancient cloth—the
+          Sudarium of Oviedo—shows patterns that meaningfully correspond to the Shroud.
+        </p>
       </div>
     </SectionShell>
   );
