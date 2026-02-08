@@ -1,4 +1,3 @@
-import SturpSummary from "@/data/mdx/sources/sturp-summary.mdx";
 import SkepticalCritique from "@/data/mdx/sources/skeptical-critique.mdx";
 
 export type SourceEntry = {
@@ -10,14 +9,6 @@ export type SourceEntry = {
 };
 
 export const sourceLibrary: SourceEntry[] = [
-  {
-    id: "sturp",
-    title: "STURP Summary Report",
-    category: "scientific",
-    summary:
-      "The body image affects only the top 0.2 microns of each linen fibril, with no penetration into the fibers—unlike paint or dye. STURP analyses concluded no pigments or binders account for the image [2][17].",
-    Component: SturpSummary,
-  },
   {
     id: "skeptic-file",
     title: "Skeptical Critique Digest",
