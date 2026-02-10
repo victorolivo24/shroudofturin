@@ -6,13 +6,7 @@ import { SectionShell } from "@/components/layout/header";
 import { SectionHeader } from "@/components/shared/section-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   shroudHotspots,
   explorerModes,
@@ -21,7 +15,6 @@ import {
 } from "@/data/hotspots";
 import { ShroudViewer } from "@/components/shared/shroud-viewer";
 import { Badge } from "@/components/ui/badge";
-import { sourceLibrary } from "@/data/sources";
 
 const viewingPanels: Record<
   ExplorerMode["id"],
@@ -78,8 +71,6 @@ export function ShroudExplorerSection() {
   const mode = explorerModes.find((item) => item.id === modeId)!;
   const hotspot = shroudHotspots.find((item) => item.id === hotspotId)!;
   const scienceNote = hotspot.scienceNote;
-  const activeSource = sourceLibrary[0];
-  const SourceComponent = activeSource.Component;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
   return (
     <SectionShell id="shroud-explorer">
@@ -201,23 +192,6 @@ export function ShroudExplorerSection() {
             crucifixion practices?
           </span>
         </p>
-      </div>
-      <div className="grid gap-10 xl:grid-cols-[1.3fr,0.7fr]">
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <Badge variant="emerald" className="mb-2">
-                Primary Source
-              </Badge>
-              <CardTitle>{activeSource.title}</CardTitle>
-              <CardDescription>{activeSource.summary}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <SourceComponent />
-              {/* TODO: replace placeholder MDX with curated excerpt */}
-            </CardContent>
-          </Card>
-        </div>
       </div>
       {lightbox && (
         <div
