@@ -50,9 +50,6 @@ export function DatingLab() {
         badgeVariant="amber"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
-        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-          SECTION 5 — DATING THE SHROUD
-        </p>
         <p className="text-sand-200/80">
           Researchers use several independent methods to estimate the Shroud’s age. Each approach
           measures something different and carries different limits.
@@ -167,12 +164,6 @@ export function DatingLab() {
                       className="h-full w-full"
                     />
                   </div>
-                  <img
-                    src="/images/fanti-spectroscopy-setup.jpg"
-                    alt="Fanti spectroscopy setup"
-                    loading="lazy"
-                    className="w-full rounded-2xl border border-sand-200/15 object-cover"
-                  />
                 </div>
               </details>
             )}

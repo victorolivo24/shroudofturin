@@ -18,9 +18,6 @@ export function BloodSerumLab() {
         badgeVariant="emerald"
       />
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
-        <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
-          SECTION 3 — BLOOD &amp; SERUM ANALYSIS
-        </p>
         <p className="text-sand-200/80">
           This section follows the visible bloodstains, ultraviolet responses, and chemistry notes in
           a single narrative flow.
