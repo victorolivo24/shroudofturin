@@ -170,7 +170,7 @@ export function CrucifixionForensics() {
           </div>
         </div>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
         <p>
           The physical injuries provide one layer of context, but they are only part of the picture.
         </p>

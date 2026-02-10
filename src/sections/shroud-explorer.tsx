@@ -189,7 +189,7 @@ export function ShroudExplorerSection() {
           </div>
         </div>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
         <p>
           The image does not appear to be painted, printed, or dyed, yet it exhibits anatomical
           coherence, depth-related behavior, and forensic detail that researchers continue to debate.

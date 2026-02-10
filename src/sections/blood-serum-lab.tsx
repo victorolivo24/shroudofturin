@@ -195,7 +195,7 @@ export function BloodSerumLab() {
           </div>
         </div>
       )}
-      <div className="border-t border-sand-200/40 pt-6 text-center text-lg font-medium text-sand-50/90">
+      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
         <p>
           The bloodstains and chemical observations raise important questions, but they do not explain
           how the body image itself formed on the cloth.
