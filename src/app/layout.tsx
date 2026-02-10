@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   title: "Shroud of Turin Interactive Atlas",
   description:
     "An impartial, museum-inspired briefing on the science, history, and debates around the Shroud of Turin.",
+  icons: {
+    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
