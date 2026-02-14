@@ -164,6 +164,22 @@ export function DatingLab() {
                       className="h-full w-full"
                     />
                   </div>
+                  <h4 className="text-base font-semibold text-sand-100">
+                    Wide-Angle X-ray Scattering (2022)
+                  </h4>
+                  <p>
+                    A 2022 study applied Wide-Angle X-ray Scattering (WAXS) to examine the
+                    structural aging of cellulose fibers in the linen. The authors reported that
+                    the measured degradation was compatible with an origin in the early centuries
+                    CE under specific environmental assumptions.
+                  </p>
+                  <p>
+                    Supporters view this as additional material evidence potentially consistent
+                    with an ancient cloth. Critics note that the method depends heavily on modeling
+                    long-term storage conditions and limited calibration for archaeological
+                    textiles. As a result, the findings are considered suggestive but remain
+                    debated.
+                  </p>
                 </div>
               </details>
             )}
