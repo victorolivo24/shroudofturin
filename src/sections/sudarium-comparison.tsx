@@ -186,6 +186,20 @@ export function SudariumComparison() {
                 compatible features is more suggestive than any single match considered in
                 isolation.
               </p>
+              <h4 className="mt-3 text-sm font-semibold text-sand-100">
+                Reported Blood Group Findings
+              </h4>
+              <p>
+                Some studies have reported that bloodstains on both the Shroud of Turin and the
+                Sudarium of Oviedo exhibit immunological reactions consistent with blood group AB.
+                Supporters argue that this shared result is notable because AB is relatively
+                uncommon in the general population.
+              </p>
+              <p>
+                Similar AB-type findings have also been reported in studies of several Eucharistic
+                miracle hosts, though these cases involve different materials and investigative
+                conditions.
+              </p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
