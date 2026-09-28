@@ -34,7 +34,7 @@ export const rooms: Room[] = [
     slug: "image",
     title: "The Image Mystery",
     question: "How did the image get onto the cloth?",
-    teaser: "Put four competing theories to the test against five hard observations.",
+    teaser: "Put four competing theories on trial against six key observations.",
     image: "/images/shroud-vp8-3d-render.jpg",
   },
   {
