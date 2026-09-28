@@ -5,6 +5,7 @@ import { Station } from "@/components/exhibit/station";
 import { Chip } from "@/components/exhibit/chip";
 import { DebateCard } from "@/components/exhibit/debate-card";
 import { ZoomImage } from "@/components/shared/zoom-image";
+import { ReliefViewer } from "@/components/exhibit/relief-viewer";
 import { Cite } from "@/components/shared/cite";
 import { cn } from "@/lib/utils";
 
@@ -168,13 +169,10 @@ export function ImageRoom() {
       <Station
         number={2}
         title="The 3D surprise"
-        intro="In 1976 researchers fed a photo of the Shroud into a VP-8 Image Analyzer, a device built to turn brightness into height. Ordinary photos come out distorted. The Shroud came out as a coherent body in relief."
+        intro="In 1976 researchers fed a photo of the Shroud into a VP-8 Image Analyzer, a device built to turn brightness into height. Ordinary photos come out distorted. The Shroud came out as a coherent body in relief. Try a simplified version here: tilt the relief, then switch to an ordinary portrait."
       >
-        <div className="grid gap-6 md:grid-cols-2">
-          <figure className="space-y-2">
-            <ZoomImage src="/images/shroud-vp8-3d-render.jpg" alt="VP-8 three-dimensional rendering of the Shroud face" />
-            <figcaption className="text-sm text-sand-200/60">VP-8 relief of the Shroud image.</figcaption>
-          </figure>
+        <div className="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-start">
+          <ReliefViewer />
           <figure className="space-y-2">
             <ZoomImage src="/images/shroud-bas-relief-model.jpg" alt="Bas-relief model used to test the image-formation hypothesis" />
             <figcaption className="text-sm text-sand-200/60">A bas-relief model used to test the contact theory.</figcaption>
