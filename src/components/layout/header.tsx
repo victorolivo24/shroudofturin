@@ -11,6 +11,9 @@ export function SiteHeader() {
           <Link href="/#map" className="text-sand-200/70 transition hover:text-sand-50">
             Floor map
           </Link>
+          <Link href="/verdict" className="text-sand-200/70 transition hover:text-sand-50">
+            Your verdict
+          </Link>
           <Link href="/sources" className="text-sand-200/70 transition hover:text-sand-50">
             Sources
           </Link>

@@ -5,7 +5,15 @@ import { RoomNav } from "@/components/layout/room-nav";
 /** Shared frame for every exhibit room: room strip, question headline, and the door to the next room. */
 export function RoomLayout({ room, children }: React.PropsWithChildren<{ room: Room }>) {
   const index = rooms.indexOf(room);
-  const next = rooms[index + 1];
+  const nextRoom = rooms[index + 1];
+  const next = nextRoom
+    ? { href: `/rooms/${nextRoom.slug}`, label: `Next: Room ${index + 2}`, ...nextRoom }
+    : {
+        href: "/verdict",
+        label: "Final room",
+        title: "Your Verdict",
+        question: "Weigh the evidence and decide for yourself.",
+      };
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
       <RoomNav current={room.slug} />
@@ -30,18 +38,16 @@ export function RoomLayout({ room, children }: React.PropsWithChildren<{ room: R
           <span className="text-xs uppercase tracking-[0.3em] text-sand-200/50">Back to</span>
           <span className="mt-2 block text-xl font-semibold">← The floor map</span>
         </Link>
-        {next && (
-          <Link
-            href={`/rooms/${next.slug}`}
-            className="rounded-3xl border border-accent-amber/40 bg-accent-amber/10 p-6 text-right transition hover:bg-accent-amber/20"
-          >
-            <span className="text-xs uppercase tracking-[0.3em] text-accent-amber">
-              Next: Room {index + 2}
-            </span>
-            <span className="mt-2 block text-xl font-semibold text-sand-50">{next.title} →</span>
-            <span className="mt-1 block text-sm text-sand-200/70">{next.question}</span>
-          </Link>
-        )}
+        <Link
+          href={next.href}
+          className="rounded-3xl border border-accent-amber/40 bg-accent-amber/10 p-6 text-right transition hover:bg-accent-amber/20"
+        >
+          <span className="text-xs uppercase tracking-[0.3em] text-accent-amber">
+            {next.label}
+          </span>
+          <span className="mt-2 block text-xl font-semibold text-sand-50">{next.title} →</span>
+          <span className="mt-1 block text-sm text-sand-200/70">{next.question}</span>
+        </Link>
       </nav>
     </div>
   );

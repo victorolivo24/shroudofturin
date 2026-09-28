@@ -69,6 +69,24 @@ export function RoomMap() {
             </Link>
           </li>
         ))}
+        <li>
+          <Link
+            href="/verdict"
+            className="group flex h-full flex-col justify-between rounded-3xl border border-dashed border-accent-amber/50 bg-accent-amber/5 p-5 transition hover:-translate-y-1 hover:bg-accent-amber/10"
+          >
+            <span className="font-mono text-[11px] text-accent-amber">Final room</span>
+            <span>
+              <span className="block text-xl font-semibold text-sand-50">Your Verdict</span>
+              <span className="mt-2 block font-medium text-accent-amber/90">So what do you think?</span>
+              <span className="mt-2 block text-sm text-sand-200/70">
+                Weigh the key evidence from every room and see which way your scale tips.
+              </span>
+            </span>
+            <span className="pt-3 text-sm font-semibold text-sand-100 transition group-hover:text-accent-amber">
+              Give your verdict →
+            </span>
+          </Link>
+        </li>
       </ol>
     </section>
   );
