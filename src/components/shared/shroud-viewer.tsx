@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
   type PointerEvent,
@@ -46,19 +45,6 @@ export function ShroudViewer({
   const pointerOrigin = useRef({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-  const overlayClass = useMemo(() => {
-    switch (mode.id) {
-      case "negative":
-        return "mix-blend-screen opacity-80";
-      case "uv":
-        return "mix-blend-lighten opacity-70";
-      case "relief":
-        return "mix-blend-multiply opacity-80";
-      default:
-        return "opacity-90";
-    }
-  }, [mode.id]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -179,11 +165,11 @@ export function ShroudViewer({
               }}
             >
               <Image
-                src={mode.placeholder}
+                src={mode.image}
                 alt={`${mode.label} visualization`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className={cn("object-cover", overlayClass)}
+                className={cn("object-cover", mode.imageClass)}
                 draggable={false}
                 priority={false}
               />
@@ -196,7 +182,7 @@ export function ShroudViewer({
                       key={hotspot.id}
                       data-hotspot-target
                       className={cn(
-                        "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/70 bg-transparent transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/60",
+                        "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-accent-amber/80 bg-black/40 shadow-[0_0_0_3px_rgba(0,0,0,0.35)] transition hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/60",
                         hotspot.id === activeHotspot &&
                           "border-4 border-accent-amber shadow-[0_0_12px_rgba(255,196,94,0.7)]",
                       )}
@@ -234,10 +220,9 @@ export function ShroudViewer({
             className="mt-2 h-1 cursor-pointer appearance-none rounded-full bg-sand-200/50 accent-amber-400"
           />
           <span className="mt-2 text-[0.65rem] normal-case tracking-normal text-sand-200/70">
-            Tip: double-click a hotspot to zoom to it.
+            Tip: double-click a marker to zoom to it; drag to pan.
           </span>
         </label>
-        <p className="text-sm text-sand-200/80">{mode.instructions}</p>
       </div>
     </div>
   );

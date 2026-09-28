@@ -47,3 +47,10 @@ body {
   background-color: rgba(247, 176, 70, 0.4);
   color: #050201;
 }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}

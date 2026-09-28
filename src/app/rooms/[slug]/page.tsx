@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { rooms } from "@/data/rooms";
 import { RoomLayout } from "@/components/layout/room-layout";
-import { ShroudExplorerSection } from "@/sections/shroud-explorer";
+import { ClothRoom } from "@/rooms/cloth";
 import { CrucifixionForensics } from "@/sections/crucifixion-forensics";
 import { BloodSerumLab } from "@/sections/blood-serum-lab";
 import { ImageFormationSection } from "@/sections/image-formation";
@@ -12,7 +12,7 @@ import { SudariumComparison } from "@/sections/sudarium-comparison";
 import { FaithLens } from "@/sections/faith-lens";
 
 const exhibits: Record<string, ComponentType> = {
-  cloth: ShroudExplorerSection,
+  cloth: ClothRoom,
   wounds: CrucifixionForensics,
   blood: BloodSerumLab,
   image: ImageFormationSection,
