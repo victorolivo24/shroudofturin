@@ -7,7 +7,7 @@ import { ClothRoom } from "@/rooms/cloth";
 import { WoundsRoom } from "@/rooms/wounds";
 import { BloodRoom } from "@/rooms/blood";
 import { ImageRoom } from "@/rooms/image";
-import { DatingLab } from "@/sections/dating-lab";
+import { DatingRoom } from "@/rooms/dating";
 import { SudariumComparison } from "@/sections/sudarium-comparison";
 import { FaithLens } from "@/sections/faith-lens";
 
@@ -16,7 +16,7 @@ const exhibits: Record<string, ComponentType> = {
   wounds: WoundsRoom,
   blood: BloodRoom,
   image: ImageRoom,
-  dating: DatingLab,
+  dating: DatingRoom,
   sudarium: SudariumComparison,
   faith: FaithLens,
 };
