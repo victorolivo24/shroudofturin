@@ -8,6 +8,7 @@ import { Station } from "@/components/exhibit/station";
 import { CompareSlider } from "@/components/exhibit/compare-slider";
 import { DebateCard } from "@/components/exhibit/debate-card";
 import { Chip } from "@/components/exhibit/chip";
+import { FoldDemo } from "@/components/exhibit/fold-demo";
 import { explorerModes, shroudHotspots, type ExplorerMode } from "@/data/hotspots";
 
 export function ClothRoom() {
@@ -114,18 +115,18 @@ export function ClothRoom() {
         title="Scars of history"
         intro={
           <p>
-            In 1532 a fire in the chapel at Chambéry melted part of the silver casket holding the
-            folded cloth, and molten metal burned through its layers. Nuns sewed patches over the holes
-            two years later. Those patches, the scorch lines and the water stains from dousing the fire
-            are the bold geometric marks you saw in the viewer, and they sit on top of the far fainter
-            body image.
+            In 1532 a fire in the chapel at Chambéry nearly destroyed the cloth, and nuns sewed patches
+            over the holes two years later. Those patches, the scorch lines and the water stains from
+            dousing the fire are the bold geometric marks you saw in the viewer, sitting on top of the
+            far fainter body image.
           </p>
         }
       >
+        <FoldDemo />
         <div className="grid gap-4 md:grid-cols-2">
           <figure className="space-y-2">
             <ZoomImage src="/images/shroud-fire-damage.jpg" alt="Burn holes and patches on the Shroud" />
-            <figcaption className="text-sm text-sand-200/60">Burn holes and the 1534 patches.</figcaption>
+            <figcaption className="text-sm text-sand-200/60">The real cloth: burn holes and the 1534 patches.</figcaption>
           </figure>
           <figure className="space-y-2">
             <ZoomImage src="/images/shroud-water-stains.jpg" alt="Water stains on the Shroud" />
