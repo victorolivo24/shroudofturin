@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Station } from "@/components/exhibit/station";
 import { DebateCard } from "@/components/exhibit/debate-card";
+import { ContaminationCalculator } from "@/components/exhibit/contamination-calculator";
 import { ZoomImage } from "@/components/shared/zoom-image";
 import { Cite } from "@/components/shared/cite";
 import { cn } from "@/lib/utils";
@@ -190,17 +191,12 @@ export function DatingRoom() {
             <ZoomImage src="/images/shroud-c14-sample-1988.jpg" alt="The corner of the cloth where the 1988 radiocarbon sample was taken" />
             <figcaption className="text-sm text-sand-200/60">The sampled corner: the 1988 radiocarbon area sits beside an earlier 1973 sample.</figcaption>
           </figure>
-          <div className="space-y-4">
-            <figure className="space-y-2">
-              <ZoomImage src="/images/shroud-rogers-cotton-fibers.webp" alt="A scientist sampling the cloth during the 1978 examination" />
-              <figcaption className="text-sm text-sand-200/60">Collecting samples during the 1978 STURP examination.</figcaption>
-            </figure>
-            <figure className="space-y-2">
-              <ZoomImage src="/images/shroud-dating-timeline.jpg" alt="Radiocarbon calibration curve for the Shroud result" />
-              <figcaption className="text-sm text-sand-200/60">How a radiocarbon age is calibrated into calendar years.</figcaption>
-            </figure>
-          </div>
+          <figure className="space-y-2">
+            <ZoomImage src="/images/shroud-rogers-cotton-fibers.webp" alt="A scientist sampling the cloth during the 1978 examination" />
+            <figcaption className="text-sm text-sand-200/60">Collecting samples during the 1978 STURP examination.</figcaption>
+          </figure>
         </div>
+        <ContaminationCalculator />
         <DebateCard
           question="Was the sample a medieval repair?"
           supporters={
