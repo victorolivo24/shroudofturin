@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 
 const cards = {
   radiocarbon: {
@@ -42,13 +40,7 @@ export function DatingLab() {
   const active = cards[activeKey];
 
   return (
-    <SectionShell id="dating-lab">
-      <SectionHeader
-        eyebrow="Dating Lab"
-        title="Dating the Cloth"
-        description="How different scientific and historical methods attempt to determine when the linen originated — and where their limits lie."
-        badgeVariant="amber"
-      />
+    <div>
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <p className="text-sand-200/80">
           Researchers use several independent methods to estimate the Shroud’s age. Each approach
@@ -187,16 +179,6 @@ export function DatingLab() {
 
         </div>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          Dating methods help frame when the cloth may originate, but they do not address whether
-          its features correspond to a specific historical event or burial context.
-        </p>
-        <p className="mt-3 text-lg font-medium text-sand-50/90">
-          That question leads to a related line of inquiry: whether another ancient cloth—the
-          Sudarium of Oviedo—shows patterns that meaningfully correspond to the Shroud.
-        </p>
-      </div>
-    </SectionShell>
+    </div>
   );
 }

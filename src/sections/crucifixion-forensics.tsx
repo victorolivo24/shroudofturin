@@ -2,20 +2,13 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 
 export function CrucifixionForensics() {
   const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
     null,
   );
   return (
-    <SectionShell id="crucifixion-forensics">
-      <SectionHeader
-        eyebrow="Crucifixion Forensics"
-        title="Roman methods, wounds, and anatomical debates."
-        description="Interactively compare wrist-vs-hand discussions, scourging data, and the archaeological record."
-      />
+    <div>
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <div className="space-y-8">
           <div className="sticky top-20 z-10 hidden items-center gap-4 border-b border-black/10 bg-sand-900/90 pb-4 pt-4 text-sm font-semibold uppercase tracking-[0.35em] text-sand-100/90 backdrop-blur md:grid md:grid-cols-[minmax(0,280px)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
@@ -170,15 +163,6 @@ export function CrucifixionForensics() {
           </div>
         </div>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          The physical injuries provide one layer of context, but they are only part of the picture.
-        </p>
-        <p className="mt-3 text-lg font-medium text-sand-50/90">
-          The next step is to look more closely at the bloodstains and chemical traces—and to ask what
-          they may, or may not, indicate.
-        </p>
-      </div>
 
       {lightbox && (
         <div
@@ -206,6 +190,6 @@ export function CrucifixionForensics() {
           </div>
         </div>
       )}
-    </SectionShell>
+    </div>
   );
 }

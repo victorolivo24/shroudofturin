@@ -1,7 +1,5 @@
 "use client";
 
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 import { useState } from "react";
 
 export function FaithLens() {
@@ -47,13 +45,7 @@ export function FaithLens() {
   };
 
   return (
-    <SectionShell id="faith-lens">
-      <SectionHeader
-        eyebrow="Faith Lens"
-        title="What the Catholic Church says about the Shroud."
-        description="An interpretive, optional perspective on how the Church frames the Shroud."
-        badgeVariant="emerald"
-      />
+    <div>
       <div className="mt-6 space-y-6 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <div className="rounded-2xl border border-sand-200/20 bg-sand-900/50 p-4 text-sm text-sand-200/80">
           <p className="text-xs uppercase tracking-[0.3em] text-sand-200/60">
@@ -145,6 +137,6 @@ export function FaithLens() {
           for both approaches.
         </p>
       </div>
-    </SectionShell>
+    </div>
   );
 }

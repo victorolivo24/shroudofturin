@@ -1,18 +1,10 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 
 export function SudariumComparison() {
   return (
-    <SectionShell id="sudarium">
-      <SectionHeader
-        eyebrow="Sudarium / Facecloth"
-        title="The Sudarium of Oviedo"
-        description="Independent cloth, shared questions."
-        badgeVariant="emerald"
-      />
+    <div>
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <p className="text-sand-200/80">
           The Sudarium of Oviedo is a bloodstained cloth preserved separately from the Shroud of
@@ -215,12 +207,6 @@ export function SudariumComparison() {
           </div>
         </details>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          So, if this suggests the Shroud may be related to Jesus, what does the Church say about
-          this?
-        </p>
-      </div>
-    </SectionShell>
+    </div>
   );
 }

@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 
 export function ImageFormationSection() {
   const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
@@ -17,12 +15,7 @@ export function ImageFormationSection() {
     }
   };
   return (
-    <SectionShell id="image-formation">
-      <SectionHeader
-        eyebrow="Image Formation"
-        title="How the Image Is Evaluated"
-        description="Comparing proposed image-formation explanations against observed physical properties of the cloth."
-      />
+    <div>
       <div className="mb-6 space-y-4 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-200/80">
         <p className="text-xs uppercase tracking-[0.35em] text-sand-200/60">
           Proposed Image-Formation Models
@@ -377,12 +370,6 @@ export function ImageFormationSection() {
           <p className="mt-3 text-sand-200/70">Click any cell to read a short explanation.</p>
         </aside>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          While no single explanation fully accounts for every observed property of the image, the
-          discussion naturally turns to another question: how old is the cloth itself?
-        </p>
-      </div>
       <style jsx>{`
         .image-formation-table details {
           border: 1px solid rgba(237, 225, 208, 0.12);
@@ -448,6 +435,6 @@ export function ImageFormationSection() {
           </div>
         </div>
       )}
-    </SectionShell>
+    </div>
   );
 }

@@ -2,21 +2,13 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 
 export function BloodSerumLab() {
   const [lightbox, setLightbox] = useState<null | { src: string; alt: string }>(
     null,
   );
   return (
-    <SectionShell id="blood-lab">
-      <SectionHeader
-        eyebrow="Blood Lab"
-        title="Blood & Chemistry"
-        description="Bloodstains, ultraviolet imaging, and chemical observations—and how they are interpreted."
-        badgeVariant="emerald"
-      />
+    <div>
       <div className="mb-10 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <p className="text-sand-200/80">
           This section follows the visible bloodstains, ultraviolet responses, and chemistry notes in
@@ -192,16 +184,6 @@ export function BloodSerumLab() {
           </div>
         </div>
       )}
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          The bloodstains and chemical observations raise important questions, but they do not explain
-          how the body image itself formed on the cloth.
-        </p>
-        <p className="mt-3 text-lg font-medium text-sand-50/90">
-          The next section examines the physical properties of the image and the competing explanations
-          proposed to account for its appearance.
-        </p>
-      </div>
-    </SectionShell>
+    </div>
   );
 }

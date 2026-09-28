@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
-import { SectionShell } from "@/components/layout/header";
-import { SectionHeader } from "@/components/shared/section-header";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -73,13 +71,7 @@ export function ShroudExplorerSection() {
   const scienceNote = hotspot.scienceNote;
   const activePanel = viewingPanels[modeId] ?? viewingPanels.normal;
   return (
-    <SectionShell id="shroud-explorer">
-      <SectionHeader
-        eyebrow="Explore"
-        title="The Shroud"
-        description="Step into an interactive, impartial gallery that allows you to examine the Shroud under different imaging conditions. Use the viewing modes to explore how the image behaves under normal lighting, photographic inversion, and ultraviolet imaging."
-        badgeVariant="amber"
-      />
+    <div>
       <div className="mb-6 space-y-8 rounded-3xl border border-sand-200/15 bg-sand-900/30 p-6 text-sand-50">
         <div>
           <p className="text-xs uppercase tracking-[0.4em] text-sand-200/60">
@@ -180,19 +172,6 @@ export function ShroudExplorerSection() {
           </div>
         </div>
       </div>
-      <div className="border-t border-sand-200/40 pt-6 text-center text-base font-medium leading-relaxed text-sand-50/90 sm:text-lg">
-        <p>
-          The image does not appear to be painted, printed, or dyed, yet it exhibits anatomical
-          coherence, depth-related behavior, and forensic detail that researchers continue to debate.
-        </p>
-        <p className="mt-3 text-lg font-medium text-sand-50/90">
-          This raises a natural question:{" "}
-          <span className="font-semibold text-sand-50">
-            are the injuries visible on the cloth consistent with what is known about Roman
-            crucifixion practices?
-          </span>
-        </p>
-      </div>
       {lightbox && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
@@ -219,6 +198,6 @@ export function ShroudExplorerSection() {
           </div>
         </div>
       )}
-    </SectionShell>
+    </div>
   );
 }
