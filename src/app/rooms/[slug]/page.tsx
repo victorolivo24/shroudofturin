@@ -8,8 +8,8 @@ import { WoundsRoom } from "@/rooms/wounds";
 import { BloodRoom } from "@/rooms/blood";
 import { ImageRoom } from "@/rooms/image";
 import { DatingRoom } from "@/rooms/dating";
-import { SudariumComparison } from "@/sections/sudarium-comparison";
-import { FaithLens } from "@/sections/faith-lens";
+import { SudariumRoom } from "@/rooms/sudarium";
+import { FaithRoom } from "@/rooms/faith";
 
 const exhibits: Record<string, ComponentType> = {
   cloth: ClothRoom,
@@ -17,8 +17,8 @@ const exhibits: Record<string, ComponentType> = {
   blood: BloodRoom,
   image: ImageRoom,
   dating: DatingRoom,
-  sudarium: SudariumComparison,
-  faith: FaithLens,
+  sudarium: SudariumRoom,
+  faith: FaithRoom,
 };
 
 type Props = { params: Promise<{ slug: string }> };
