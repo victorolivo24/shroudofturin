@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { rooms } from "@/data/rooms";
 import { RoomLayout } from "@/components/layout/room-layout";
 import { ClothRoom } from "@/rooms/cloth";
-import { CrucifixionForensics } from "@/sections/crucifixion-forensics";
+import { WoundsRoom } from "@/rooms/wounds";
 import { BloodSerumLab } from "@/sections/blood-serum-lab";
 import { ImageFormationSection } from "@/sections/image-formation";
 import { DatingLab } from "@/sections/dating-lab";
@@ -13,7 +13,7 @@ import { FaithLens } from "@/sections/faith-lens";
 
 const exhibits: Record<string, ComponentType> = {
   cloth: ClothRoom,
-  wounds: CrucifixionForensics,
+  wounds: WoundsRoom,
   blood: BloodSerumLab,
   image: ImageFormationSection,
   dating: DatingLab,
